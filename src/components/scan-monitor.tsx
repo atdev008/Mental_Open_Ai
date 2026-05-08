@@ -107,10 +107,11 @@ export function ScanMonitor({ initialDevice }: ScanMonitorProps) {
   );
   const waveformBars = useMemo(
     () =>
-      Array.from({ length: 28 }, (_, index) => {
+      Array.from({ length: 28 }, () => {
         if (phase === "complete") return 50;
-        return 26 + Math.round(Math.abs(Math.sin((frame + index) * 0.045)) * 74);
+        return 15 + Math.round(Math.random() * 85);
       }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [frame, phase]
   );
 
