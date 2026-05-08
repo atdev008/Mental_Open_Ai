@@ -10,7 +10,7 @@ export function ModeSelect() {
       <section className="mode-screen panel glow">
         <div className="mode-header">
           <span className="eyebrow">Neural Memory Interface</span>
-          <h1>เลือกโหมดการใช้งาน</h1>
+          <h1>เลือกโหมดการใช้งาน DEMO</h1>
           <p className="mode-subtitle">
             ระบบรองรับทั้งการใช้งานส่วนบุคคล ทางการแพทย์ และทางกฎหมาย
             กรุณาเลือกโหมดที่ตรงกับวัตถุประสงค์ของคุณ
