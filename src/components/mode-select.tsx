@@ -12,8 +12,8 @@ export function ModeSelect() {
           <span className="eyebrow">Neural Memory Interface</span>
           <h1>Select Mode — DEMO</h1>
           <p className="mode-subtitle">
-            Choose the mode that matches your purpose.
-            This system supports personal health scanning powered by AI.
+            Choose the mode that matches your purpose. This system supports
+            personal health scanning powered by AI.
           </p>
         </div>
 
@@ -26,7 +26,13 @@ export function ModeSelect() {
           >
             <div className="mode-icon personal-icon">
               <svg viewBox="0 0 48 48" width="48" height="48" fill="none">
-                <circle cx="24" cy="16" r="10" stroke="currentColor" strokeWidth="2" />
+                <circle
+                  cx="24"
+                  cy="16"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
                 <path
                   d="M 8 42 C 8 33 15 26 24 26 C 33 26 40 33 40 42"
                   stroke="currentColor"
@@ -37,17 +43,19 @@ export function ModeSelect() {
             </div>
             <h2>Personal</h2>
             <p>
-              Brain scan for preliminary mental health assessment.
-              Analyze stress, sleep quality, and focus with AI-powered recommendations.
+              Creation of patient's dimensional profiles for preliminary mental
+              health assessment. Analyze stress, sleep quality.
             </p>
             <ul className="mode-features">
-              <li>EEG Brain Wave Scan</li>
-              <li>Stress & HRV Analysis</li>
-              <li>Preliminary Diagnosis Report</li>
-              <li>AI Health Recommendations</li>
+              <li>sleep, circadian rhythm, HRV, resting HR, activity</li>
+              <li>voice/prosody, speech tempo, affective language</li>
+              <li>
+                EMA: mood, worry, rumination, avoidance, energy, anhedonia
+              </li>
+              <li>PHQ-9, GAD-7, functional impairment scales</li>
             </ul>
             <span className="mode-cta">
-              Start Brain Scan →
+              Start Multimodal Evidence Acquisition →
             </span>
           </button>
 
