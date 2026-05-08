@@ -107,11 +107,14 @@ export function ScanMonitor({ initialDevice }: ScanMonitorProps) {
   );
   const waveformBars = useMemo(
     () =>
-      Array.from({ length: 28 }, () => {
+      Array.from({ length: 28 }, (_, index) => {
         if (phase === "complete") return 50;
-        return 15 + Math.round(Math.random() * 85);
+        // Alpha wave pattern (8-12 Hz feel) with slight randomness for organic look
+        const alpha = Math.sin((frame * 0.8 + index * 0.9)) * 30;
+        const beta = Math.sin((frame * 1.4 + index * 1.6)) * 12;
+        const noise = (Math.sin(frame * 3.7 + index * 7.3) * 0.5 + 0.5) * 10 - 5;
+        return Math.max(10, Math.min(95, 50 + alpha + beta + noise));
       }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [frame, phase]
   );
 

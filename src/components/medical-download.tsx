@@ -590,9 +590,8 @@ export function MedicalDownload() {
               </div>
             </div>
 
-            {/* Two column: Medical + Legal */}
-            <div className="report-columns">
-              {/* Medical Use */}
+            {/* Show only relevant section based on purpose */}
+            {purpose !== "judicial" && (
               <div className="report-card panel">
                 <div className="report-card-icon medical-use-icon">
                   <svg viewBox="0 0 40 40" width="36" height="36" fill="none">
@@ -628,8 +627,9 @@ export function MedicalDownload() {
                   <span className="report-badge medical-badge">สำหรับแพทย์ผู้เชี่ยวชาญเท่านั้น</span>
                 </div>
               </div>
+            )}
 
-              {/* Legal / Justice Use */}
+            {purpose === "judicial" && (
               <div className="report-card panel">
                 <div className="report-card-icon legal-use-icon">
                   <svg viewBox="0 0 40 40" width="36" height="36" fill="none">
@@ -671,7 +671,7 @@ export function MedicalDownload() {
                   <span className="report-badge legal-badge">ต้องมีหมายศาลหรือความยินยอม</span>
                 </div>
               </div>
-            </div>
+            )}
 
             {/* Actions */}
             <div className="report-actions">
