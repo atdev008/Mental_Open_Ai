@@ -1152,6 +1152,343 @@ button {
   gap: 20px;
 }
 
+.evidence-dashboard {
+  display: grid;
+  gap: 22px;
+}
+
+.evidence-topbar p {
+  max-width: 760px;
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.evidence-summary {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 22px;
+  align-items: start;
+  padding: 24px;
+}
+
+.evidence-summary h2,
+.evidence-card h2 {
+  margin: 10px 0 8px;
+  font-family: var(--font-display), sans-serif;
+}
+
+.evidence-summary p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.pattern-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.pattern-card {
+  min-height: 132px;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(98, 241, 212, 0.18);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.pattern-card span,
+.pattern-card small,
+.metric-row span {
+  color: var(--muted);
+}
+
+.pattern-card strong {
+  display: block;
+  margin: 10px 0;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.pattern-card small {
+  display: block;
+  line-height: 1.45;
+}
+
+.evidence-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 18px;
+}
+
+.evidence-card {
+  padding: 22px;
+}
+
+.evidence-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.source-pill {
+  flex-shrink: 0;
+  max-width: 240px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(84, 215, 255, 0.18);
+  background: rgba(84, 215, 255, 0.08);
+  color: #b7f4ff;
+  font-size: 0.78rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.metric-table {
+  display: grid;
+  gap: 8px;
+}
+
+.metric-row {
+  display: grid;
+  grid-template-columns:
+    minmax(140px, 1.05fr)
+    minmax(110px, 0.75fr)
+    minmax(120px, 0.8fr)
+    minmax(140px, 0.9fr)
+    minmax(150px, 1fr)
+    minmax(150px, 1fr)
+    minmax(220px, 1.45fr);
+  gap: 12px;
+  align-items: start;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(84, 215, 255, 0.11);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.metric-row-head {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.metric-row-head span {
+  color: #e8fbff;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.metric-row strong {
+  color: #ffffff;
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.metric-row span {
+  overflow-wrap: anywhere;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.metric-row .metric-name {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.evidence-disclaimer {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 18px 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 214, 102, 0.24);
+  background: rgba(255, 214, 102, 0.08);
+  color: #fff2bf;
+  line-height: 1.6;
+}
+
+.differential-dashboard {
+  display: grid;
+  gap: 22px;
+}
+
+.differential-summary {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 22px;
+  padding: 24px;
+}
+
+.differential-summary h2,
+.differential-card h2 {
+  margin: 10px 0 8px;
+  font-family: var(--font-display), sans-serif;
+}
+
+.differential-summary p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.evidence-snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.evidence-snapshot-card {
+  min-height: 138px;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(84, 215, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.evidence-snapshot-card span,
+.evidence-snapshot-card small,
+.evidence-snapshot-card em {
+  display: block;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.evidence-snapshot-card strong {
+  display: block;
+  margin: 8px 0;
+  color: #ffffff;
+  line-height: 1.35;
+}
+
+.evidence-snapshot-card em {
+  margin-top: 8px;
+  font-size: 0.78rem;
+  font-style: normal;
+}
+
+.differential-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.differential-card {
+  padding: 22px;
+}
+
+.reasoning-list {
+  display: grid;
+  gap: 10px;
+}
+
+.reasoning-row {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(84, 215, 255, 0.11);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.reasoning-row div {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.reasoning-row strong {
+  color: #ffffff;
+  line-height: 1.35;
+}
+
+.reasoning-row div span {
+  flex-shrink: 0;
+  max-width: 190px;
+  padding: 6px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(98, 241, 212, 0.18);
+  background: rgba(98, 241, 212, 0.08);
+  color: #c9fff1;
+  font-size: 0.78rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.reasoning-row p,
+.reasoning-row small {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.reasoning-row small {
+  color: #d7faff;
+}
+
+.psychiatric-dashboard {
+  display: grid;
+  gap: 22px;
+}
+
+.psychiatric-input-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.psychiatric-input-card {
+  min-height: 118px;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 214, 102, 0.15);
+  background: rgba(255, 214, 102, 0.05);
+}
+
+.psychiatric-input-card span,
+.psychiatric-input-card small {
+  display: block;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.psychiatric-input-card strong {
+  display: block;
+  margin: 8px 0;
+  color: #ffffff;
+  line-height: 1.35;
+}
+
+.psychiatric-core-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.psychiatric-core-card,
+.psychiatric-plan-card {
+  padding: 22px;
+}
+
+.psychiatric-core-card:first-child {
+  grid-column: 1 / -1;
+}
+
 .signal-panel,
 .telemetry-panel {
   padding: 22px;
@@ -1250,6 +1587,29 @@ button {
     grid-template-columns: 1fr;
   }
 
+  .evidence-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .differential-summary,
+  .differential-grid,
+  .psychiatric-core-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .psychiatric-core-card:first-child {
+    grid-column: auto;
+  }
+
+  .pattern-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .evidence-snapshot-grid,
+  .psychiatric-input-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .device-stage {
     min-height: 360px;
   }
@@ -1274,6 +1634,43 @@ button {
   .scan-status-line {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .evidence-card-header {
+    flex-direction: column;
+  }
+
+  .source-pill {
+    max-width: none;
+    width: fit-content;
+  }
+
+  .metric-row,
+  .metric-row-head {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-row-head {
+    display: none;
+  }
+
+  .metric-row span,
+  .metric-row strong {
+    font-size: 0.94rem;
+  }
+
+  .evidence-snapshot-grid,
+  .psychiatric-input-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reasoning-row div {
+    flex-direction: column;
+  }
+
+  .reasoning-row div span {
+    max-width: none;
+    width: fit-content;
   }
 
   .device-stage {
@@ -1810,6 +2207,16 @@ button {
   box-shadow: 0 12px 50px rgba(255, 210, 110, 0.1);
 }
 
+.mode-card.reasoning:hover {
+  border-color: rgba(98, 241, 212, 0.42);
+  box-shadow: 0 12px 50px rgba(98, 241, 212, 0.1);
+}
+
+.mode-card.psychiatric:hover {
+  border-color: rgba(255, 214, 102, 0.42);
+  box-shadow: 0 12px 50px rgba(255, 214, 102, 0.1);
+}
+
 .mode-icon {
   width: 64px;
   height: 64px;
@@ -1825,6 +2232,18 @@ button {
   border-color: rgba(255, 122, 198, 0.2);
   background: rgba(255, 122, 198, 0.08);
   color: var(--pink);
+}
+
+.reasoning-icon {
+  border-color: rgba(98, 241, 212, 0.22);
+  background: rgba(98, 241, 212, 0.08);
+  color: var(--teal);
+}
+
+.psychiatric-icon {
+  border-color: rgba(255, 214, 102, 0.22);
+  background: rgba(255, 214, 102, 0.08);
+  color: #ffd66a;
 }
 
 .mode-card h2 {
@@ -1882,6 +2301,14 @@ button {
   color: #ffd26e;
 }
 
+.mode-cta.reasoning-cta {
+  color: var(--teal);
+}
+
+.mode-cta.psychiatric-cta {
+  color: #ffd66a;
+}
+
 .mode-restriction {
   display: block;
   margin-top: 8px;
@@ -1906,6 +2333,14 @@ button {
 
 .mode-card.judicial .mode-features li::before {
   background: rgba(255, 210, 110, 0.5);
+}
+
+.mode-card.reasoning .mode-features li::before {
+  background: rgba(98, 241, 212, 0.5);
+}
+
+.mode-card.psychiatric .mode-features li::before {
+  background: rgba(255, 214, 102, 0.55);
 }
 
 /* ===== Medical Page ===== */

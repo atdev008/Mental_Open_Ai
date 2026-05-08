@@ -17,7 +17,7 @@ export function ModeSelect() {
           </p>
         </div>
 
-        <div className="mode-grid centered">
+        <div className="mode-grid three-col">
           {/* Personal Mode */}
           <button
             className="mode-card"
@@ -56,6 +56,90 @@ export function ModeSelect() {
             </ul>
             <span className="mode-cta">
               Start Multimodal Evidence Acquisition →
+            </span>
+          </button>
+
+          <button
+            className="mode-card reasoning"
+            onClick={() => router.push("/differential")}
+            type="button"
+          >
+            <div className="mode-icon reasoning-icon">
+              <svg viewBox="0 0 48 48" width="48" height="48" fill="none">
+                <path
+                  d="M 10 12 H 38"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M 10 24 H 38"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M 10 36 H 38"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeWidth="2"
+                />
+                <circle cx="15" cy="12" r="4" stroke="currentColor" strokeWidth="2" />
+                <circle cx="29" cy="24" r="4" stroke="currentColor" strokeWidth="2" />
+                <circle cx="22" cy="36" r="4" stroke="currentColor" strokeWidth="2" />
+              </svg>
+            </div>
+            <h2>Differential Reasoning Layer</h2>
+            <p>
+              Maps multimodal evidence streams into dimensional, RDoC, HiTOP,
+              and DSM/ICD-compatible reasoning views for clinician review.
+            </p>
+            <ul className="mode-features">
+              <li>Longitudinal Internalizing-State Model</li>
+              <li>HiTOP Internalizing profile</li>
+              <li>RDoC domain map</li>
+              <li>DSM/ICD compatibility support flags</li>
+            </ul>
+            <span className="mode-cta reasoning-cta">
+              Open Differential Layer →
+            </span>
+          </button>
+
+          <button
+            className="mode-card psychiatric"
+            onClick={() => router.push("/psychiatric")}
+            type="button"
+          >
+            <div className="mode-icon psychiatric-icon">
+              <svg viewBox="0 0 48 48" width="48" height="48" fill="none">
+                <path
+                  d="M 24 6 C 15 6 9 12 9 21 C 9 30 15 36 24 42 C 33 36 39 30 39 21 C 39 12 33 6 24 6 Z"
+                  stroke="currentColor"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M 16 23 H 22 L 25 16 L 29 31 L 32 23 H 36"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                />
+              </svg>
+            </div>
+            <h2>Psychiatric Reasoning Layer</h2>
+            <p>
+              Extends the differential formulation into mechanistic reasoning,
+              risk forecasting, treatment simulation, and care-plan generation.
+            </p>
+            <ul className="mode-features">
+              <li>Post-AGI Psychiatric Reasoning Core</li>
+              <li>differential formulation</li>
+              <li>causal/mechanistic explanation</li>
+              <li>relapse-risk and treatment-response simulation</li>
+            </ul>
+            <span className="mode-cta psychiatric-cta">
+              Open Psychiatric Layer →
             </span>
           </button>
 

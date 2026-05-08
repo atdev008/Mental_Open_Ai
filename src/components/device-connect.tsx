@@ -12,15 +12,21 @@ type DeviceConnectProps = {
 
 type ConnectionPhase = "idle" | "connecting" | "connected";
 
-function getInitialPhase(connection: DeviceStatus["connection"]): ConnectionPhase {
+function getInitialPhase(
+  connection: DeviceStatus["connection"],
+): ConnectionPhase {
   return connection === "connected" ? "connected" : "idle";
 }
 
 export function DeviceConnect({ initialDevice }: DeviceConnectProps) {
   const router = useRouter();
   const [device, setDevice] = useState(initialDevice);
-  const [phase, setPhase] = useState<ConnectionPhase>(getInitialPhase(initialDevice.connection));
-  const [message, setMessage] = useState("Device ready to pair with brain scan system");
+  const [phase, setPhase] = useState<ConnectionPhase>(
+    getInitialPhase(initialDevice.connection),
+  );
+  const [message, setMessage] = useState(
+    "Device ready to pair with brain scan system",
+  );
 
   async function handleConnect() {
     if (phase !== "idle") {
@@ -33,7 +39,7 @@ export function DeviceConnect({ initialDevice }: DeviceConnectProps) {
     await new Promise((resolve) => window.setTimeout(resolve, 1800));
 
     const response = await fetch("/api/device/connect", {
-      method: "POST"
+      method: "POST",
     });
     const nextDevice: DeviceStatus = await response.json();
 
@@ -61,11 +67,7 @@ export function DeviceConnect({ initialDevice }: DeviceConnectProps) {
         </div>
         <div className="connect-grid">
           <div className="connect-copy">
-            <h1>Connect device before starting brain scan</h1>
-            <p>
-              Use the device image from the prototype as the starting point of the actual flow: pair, confirm connection,
-              then proceed to the brain signal scan page
-            </p>
+            <h1>Connect device for Multimodal Evidence Acquisition</h1>
 
             <div className="connect-stats">
               <div className="stat-card">
@@ -129,7 +131,11 @@ export function DeviceConnect({ initialDevice }: DeviceConnectProps) {
             </div>
             <div className="device-status-panel">
               <span>Signal Handshake</span>
-              <strong>{phase === "connected" ? "Secure Link Online" : "Awaiting Pairing"}</strong>
+              <strong>
+                {phase === "connected"
+                  ? "Secure Link Online"
+                  : "Awaiting Pairing"}
+              </strong>
               <small>
                 {phase === "connected"
                   ? `Initial signal quality ${device.signalQuality}%`
