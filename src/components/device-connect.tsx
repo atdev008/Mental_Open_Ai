@@ -83,22 +83,24 @@ export function DeviceConnect({ initialDevice }: DeviceConnectProps) {
             </div>
 
             <div className="connect-actions">
-              <button
-                className="primary-button"
-                disabled={phase !== "idle"}
-                onClick={handleConnect}
-                type="button"
-              >
-                {phase === "connecting" ? "กำลังเชื่อมต่อ..." : "เชื่อมต่ออุปกรณ์"}
-              </button>
-              <button
-                className="secondary-button"
-                disabled={phase !== "connected"}
-                onClick={handleStartScan}
-                type="button"
-              >
-                เริ่มสแกน
-              </button>
+              {phase !== "connected" ? (
+                <button
+                  className="primary-button"
+                  disabled={phase === "connecting"}
+                  onClick={handleConnect}
+                  type="button"
+                >
+                  {phase === "connecting" ? "กำลังเชื่อมต่อ..." : "เชื่อมต่ออุปกรณ์"}
+                </button>
+              ) : (
+                <button
+                  className="primary-button"
+                  onClick={handleStartScan}
+                  type="button"
+                >
+                  เริ่มสแกน
+                </button>
+              )}
             </div>
 
             <div className={`connection-badge ${phase}`}>
@@ -117,7 +119,7 @@ export function DeviceConnect({ initialDevice }: DeviceConnectProps) {
             <div className={`device-glow-ring inner ${phase}`} />
             <div className={`device-image-wrap ${phase}`}>
               <Image
-                src="/DeviceEP.png"
+                src="/device-ep.png"
                 alt="Brain device concept"
                 width={1100}
                 height={700}

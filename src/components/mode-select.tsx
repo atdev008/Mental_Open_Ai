@@ -12,12 +12,12 @@ export function ModeSelect() {
           <span className="eyebrow">Neural Memory Interface</span>
           <h1>เลือกโหมดการใช้งาน</h1>
           <p className="mode-subtitle">
-            ระบบรองรับทั้งการใช้งานส่วนบุคคลและทางการแพทย์
+            ระบบรองรับทั้งการใช้งานส่วนบุคคล ทางการแพทย์ และทางกฎหมาย
             กรุณาเลือกโหมดที่ตรงกับวัตถุประสงค์ของคุณ
           </p>
         </div>
 
-        <div className="mode-grid">
+        <div className="mode-grid three-col">
           {/* Personal Mode */}
           <button
             className="mode-card"
@@ -54,7 +54,7 @@ export function ModeSelect() {
           {/* Medical Mode */}
           <button
             className="mode-card medical"
-            onClick={() => router.push("/medical")}
+            onClick={() => router.push("/medical?purpose=medical")}
             type="button"
           >
             <div className="mode-icon medical-icon">
@@ -65,18 +65,54 @@ export function ModeSelect() {
             </div>
             <h2>ทางการแพทย์</h2>
             <p>
-              ดาวน์โหลดภาพความทรงจำและข้อมูลสมองเชิงลึก
-              สำหรับใช้ในการรักษาทางจิตเวช หรือเป็นหลักฐานทางคดี
+              ดาวน์โหลดภาพความทรงจำเพื่อใช้ในการรักษา
+              ฟื้นฟูความจำ หรือเก็บรักษาความทรงจำไว้ก่อนเสื่อมสภาพ
             </p>
             <ul className="mode-features">
-              <li>ดาวน์โหลดภาพความทรงจำ</li>
-              <li>ข้อมูลเชิงลึกสำหรับแพทย์</li>
-              <li>รองรับการใช้ในทางคดี</li>
-              <li>เข้ารหัสและรับรองความถูกต้อง</li>
+              <li>ฟื้นฟูความทรงจำ (EMDR)</li>
+              <li>เก็บรักษา Digital Legacy</li>
+              <li>Cognitive Rehabilitation</li>
+              <li>ความปลอดภัยระดับสูง</li>
             </ul>
             <span className="mode-cta">
               เข้าสู่โหมดทางการแพทย์ →
             </span>
+            <small className="mode-restriction">* เปิดใช้เมื่อได้รับใบอนุญาตจากแพทย์ผู้เชี่ยวชาญเท่านั้น</small>
+          </button>
+
+          {/* Judicial Mode */}
+          <button
+            className="mode-card judicial"
+            onClick={() => router.push("/medical?purpose=judicial")}
+            type="button"
+          >
+            <div className="mode-icon judicial-mode-icon">
+              <svg viewBox="0 0 48 48" width="48" height="48" fill="none">
+                <path d="M 24 6 L 24 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <path d="M 24 10 L 10 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <path d="M 24 10 L 38 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <path d="M 6 18 C 6 18 10 26 14 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <path d="M 34 18 C 34 18 38 26 42 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <path d="M 24 10 L 24 36" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <path d="M 18 36 L 30 36" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <path d="M 14 42 L 34 42" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </div>
+            <h2>ทางตุลาการ</h2>
+            <p>
+              ดึงความทรงจำเพื่อใช้เป็นหลักฐานในกระบวนการยุติธรรม
+              ตัดสินคดีอาญา สืบสวนสอบสวน พร้อม Chain of Custody
+            </p>
+            <ul className="mode-features">
+              <li>หลักฐานตัดสินคดีอาญา</li>
+              <li>การสืบสวนสอบสวน</li>
+              <li>รับรองความถูกต้อง</li>
+              <li>Chain of Custody Certified</li>
+            </ul>
+            <span className="mode-cta judicial-cta">
+              เข้าสู่โหมดตุลาการ →
+            </span>
+            <small className="mode-restriction">* เปิดใช้เมื่อมีเอกสารทางคดีหรือหมายศาลเท่านั้น</small>
           </button>
         </div>
       </section>

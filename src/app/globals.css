@@ -1768,6 +1768,11 @@ button {
   margin: 0 auto;
 }
 
+.mode-grid.three-col {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 1100px;
+}
+
 .mode-card {
   display: flex;
   flex-direction: column;
@@ -1793,6 +1798,11 @@ button {
 .mode-card.medical:hover {
   border-color: rgba(255, 122, 198, 0.4);
   box-shadow: 0 12px 50px rgba(255, 122, 198, 0.1);
+}
+
+.mode-card.judicial:hover {
+  border-color: rgba(255, 210, 110, 0.4);
+  box-shadow: 0 12px 50px rgba(255, 210, 110, 0.1);
 }
 
 .mode-icon {
@@ -1863,8 +1873,34 @@ button {
   font-size: 0.95rem;
 }
 
+.mode-cta.judicial-cta {
+  color: #ffd26e;
+}
+
+.mode-restriction {
+  display: block;
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: rgba(255, 210, 110, 0.08);
+  border: 1px solid rgba(255, 210, 110, 0.15);
+  color: #ffd26e;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
 .mode-card.medical .mode-cta {
   color: var(--pink);
+}
+
+.judicial-mode-icon {
+  border-color: rgba(255, 210, 110, 0.2);
+  background: rgba(255, 210, 110, 0.08);
+  color: #ffd26e;
+}
+
+.mode-card.judicial .mode-features li::before {
+  background: rgba(255, 210, 110, 0.5);
 }
 
 /* ===== Medical Page ===== */
@@ -2231,7 +2267,8 @@ button {
 }
 
 @media (max-width: 900px) {
-  .mode-grid {
+  .mode-grid,
+  .mode-grid.three-col {
     grid-template-columns: 1fr;
   }
 
@@ -2482,6 +2519,7 @@ button {
 }
 
 .med-connect-visual {
+  position: relative;
   display: grid;
   place-items: center;
   min-height: 320px;
@@ -2737,5 +2775,353 @@ button {
   .mem-scan-stats {
     flex-direction: column;
     gap: 10px;
+  }
+}
+
+/* ===== Report Summary Page ===== */
+.report-section {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 20px;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.report-list-panel {
+  padding: 22px;
+}
+
+.report-file-list {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 8px;
+}
+
+.report-file-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(84, 215, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  transition: border-color 0.2s ease;
+}
+
+.report-file-row:hover {
+  border-color: rgba(84, 215, 255, 0.25);
+}
+
+.report-file-num {
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.85rem;
+  color: var(--cyan);
+  opacity: 0.6;
+  min-width: 24px;
+}
+
+.report-file-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.report-file-info strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 0.95rem;
+}
+
+.report-file-info span {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.report-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.report-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.report-card-icon {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  margin-bottom: 16px;
+}
+
+.medical-use-icon {
+  background: rgba(98, 241, 212, 0.08);
+  border: 1px solid rgba(98, 241, 212, 0.2);
+  color: var(--teal);
+}
+
+.legal-use-icon {
+  background: rgba(255, 210, 110, 0.08);
+  border: 1px solid rgba(255, 210, 110, 0.2);
+  color: #ffd26e;
+}
+
+.report-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+}
+
+.report-card-desc {
+  margin: 0 0 18px;
+  color: var(--muted);
+  line-height: 1.65;
+  font-size: 0.92rem;
+}
+
+.report-use-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+  display: grid;
+  gap: 14px;
+  flex: 1;
+}
+
+.report-use-list li {
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(84, 215, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.report-use-list li strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 0.95rem;
+}
+
+.report-use-list li span {
+  display: block;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 0.85rem;
+}
+
+.report-card-footer {
+  margin-top: auto;
+}
+
+.report-badge {
+  display: inline-flex;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.medical-badge {
+  background: rgba(98, 241, 212, 0.1);
+  border: 1px solid rgba(98, 241, 212, 0.2);
+  color: var(--teal);
+}
+
+.legal-badge {
+  background: rgba(255, 210, 110, 0.1);
+  border: 1px solid rgba(255, 210, 110, 0.2);
+  color: #ffd26e;
+}
+
+.report-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+@media (max-width: 900px) {
+  .report-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .report-actions {
+    flex-direction: column;
+  }
+}
+
+/* ===== Purpose Selection ===== */
+.purpose-select-section {
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.purpose-intro {
+  margin: 0 0 28px;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 1.02rem;
+  max-width: 65ch;
+}
+
+.purpose-select-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.purpose-option {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 24px;
+  border: 2px solid rgba(84, 215, 255, 0.15);
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(10, 18, 34, 0.85), rgba(5, 10, 21, 0.95));
+  cursor: pointer;
+  font: inherit;
+  color: var(--text);
+  text-align: left;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.purpose-option:hover {
+  border-color: rgba(84, 215, 255, 0.35);
+  box-shadow: 0 8px 40px rgba(84, 215, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.purpose-option.selected {
+  border-color: rgba(98, 241, 212, 0.55);
+  box-shadow: 0 0 30px rgba(98, 241, 212, 0.12), 0 8px 40px rgba(98, 241, 212, 0.08);
+}
+
+.purpose-option.judicial:hover {
+  border-color: rgba(255, 210, 110, 0.4);
+  box-shadow: 0 8px 40px rgba(255, 210, 110, 0.08);
+}
+
+.purpose-option.judicial.selected {
+  border-color: rgba(255, 210, 110, 0.55);
+  box-shadow: 0 0 30px rgba(255, 210, 110, 0.12), 0 8px 40px rgba(255, 210, 110, 0.08);
+}
+
+.purpose-opt-icon {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+}
+
+.restore-icon {
+  background: rgba(84, 215, 255, 0.08);
+  border: 1px solid rgba(84, 215, 255, 0.2);
+  color: var(--cyan);
+}
+
+.preserve-icon {
+  background: rgba(98, 241, 212, 0.08);
+  border: 1px solid rgba(98, 241, 212, 0.2);
+  color: var(--teal);
+}
+
+.judicial-icon {
+  background: rgba(255, 210, 110, 0.08);
+  border: 1px solid rgba(255, 210, 110, 0.2);
+  color: #ffd26e;
+}
+
+.purpose-option h3 {
+  margin: 4px 0 0;
+  font-size: 1.15rem;
+}
+
+.purpose-opt-category {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background: rgba(98, 241, 212, 0.1);
+  border: 1px solid rgba(98, 241, 212, 0.2);
+  color: var(--teal);
+}
+
+.purpose-opt-category.judicial-cat {
+  background: rgba(255, 210, 110, 0.1);
+  border-color: rgba(255, 210, 110, 0.2);
+  color: #ffd26e;
+}
+
+.purpose-option p {
+  margin: 4px 0 10px;
+  color: var(--muted);
+  line-height: 1.65;
+  font-size: 0.88rem;
+}
+
+.purpose-option ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.purpose-option ul li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+
+.purpose-option ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(84, 215, 255, 0.5);
+}
+
+.purpose-option.judicial ul li::before {
+  background: rgba(255, 210, 110, 0.5);
+}
+
+.purpose-option.selected ul li::before {
+  background: rgba(98, 241, 212, 0.7);
+}
+
+.purpose-option.judicial.selected ul li::before {
+  background: rgba(255, 210, 110, 0.7);
+}
+
+.purpose-select-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.purpose-select-actions small {
+  color: var(--muted);
+  font-size: 0.88rem;
+  min-height: 1.4em;
+}
+
+@media (max-width: 1000px) {
+  .purpose-select-grid {
+    grid-template-columns: 1fr;
   }
 }

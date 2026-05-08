@@ -1,9 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
-type MedicalPhase = "connect" | "scanning" | "downloading" | "complete" | "gallery";
+type MedicalPhase = "purpose" | "connect" | "scanning" | "downloading" | "complete" | "report" | "gallery";
+
+type PurposeType = "medical-restore" | "medical-preserve" | "judicial" | null;
 
 type MemoryPreview = {
   id: string;
@@ -88,7 +92,19 @@ const scanMessages = [
 ];
 
 export function MedicalDownload() {
-  const [phase, setPhase] = useState<MedicalPhase>("connect");
+  const searchParams = useSearchParams();
+  const urlPurpose = searchParams.get("purpose");
+
+  // Determine initial phase based on URL param
+  const initialPhase: MedicalPhase = urlPurpose ? "connect" : "purpose";
+  const initialPurpose: PurposeType = urlPurpose === "judicial"
+    ? "judicial"
+    : urlPurpose === "medical"
+      ? "medical-restore"
+      : null;
+
+  const [phase, setPhase] = useState<MedicalPhase>(initialPhase);
+  const [purpose, setPurpose] = useState<PurposeType>(initialPurpose);
   const [connectStatus, setConnectStatus] = useState<"idle" | "connecting" | "connected">("idle");
   const [progress, setProgress] = useState(0);
   const [scanFrame, setScanFrame] = useState(0);
@@ -155,10 +171,12 @@ export function MedicalDownload() {
 
   function getTitle() {
     switch (phase) {
+      case "purpose": return "เลือกวัตถุประสงค์การใช้งาน";
       case "connect": return "เชื่อมต่ออุปกรณ์สแกนความทรงจำ";
       case "scanning": return "กำลังสแกนความทรงจำ";
       case "downloading": return "กำลังดาวน์โหลดข้อมูลความทรงจำ";
       case "complete": return "ดาวน์โหลดเสร็จสมบูรณ์";
+      case "report": return "สรุปรายงานข้อมูลความทรงจำ";
       case "gallery": return "ภาพความทรงจำที่ดาวน์โหลด";
     }
   }
@@ -173,6 +191,11 @@ export function MedicalDownload() {
           </div>
           <div className="topbar-actions">
             {phase === "gallery" && (
+              <button className="secondary-button" onClick={() => setPhase("report")} type="button">
+                ← กลับ
+              </button>
+            )}
+            {phase === "report" && (
               <button className="secondary-button" onClick={() => setPhase("complete")} type="button">
                 ← กลับ
               </button>
@@ -182,6 +205,123 @@ export function MedicalDownload() {
             </Link>
           </div>
         </div>
+
+        {/* Phase 0: Purpose Selection */}
+        {phase === "purpose" && (
+          <div className="purpose-select-section">
+            <p className="purpose-intro">
+              กรุณาเลือกวัตถุประสงค์ในการสแกนและดาวน์โหลดความทรงจำ
+              ระบบจะปรับโหมดการทำงานตามวัตถุประสงค์ที่เลือก
+            </p>
+
+            <div className="purpose-select-grid">
+              {/* Medical - Restore */}
+              <button
+                className={`purpose-option ${purpose === "medical-restore" ? "selected" : ""}`}
+                onClick={() => setPurpose("medical-restore")}
+                type="button"
+              >
+                <div className="purpose-opt-icon restore-icon">
+                  <svg viewBox="0 0 40 40" width="36" height="36" fill="none">
+                    <path d="M 8 20 C 8 13 13 8 20 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M 8 20 L 5 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M 8 20 L 11 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    <circle cx="20" cy="20" r="12" stroke="currentColor" strokeWidth="2" />
+                    <path d="M 20 14 L 20 20 L 25 23" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                <h3>ฟื้นฟูความทรงจำ</h3>
+                <span className="purpose-opt-category">ทางการแพทย์</span>
+                <p>
+                  สำหรับผู้ป่วยที่สูญเสียความจำ เช่น Alzheimer&apos;s, อุบัติเหตุทางสมอง
+                  หรือ PTSD ใช้ภาพความทรงจำเพื่อกระตุ้นและฟื้นฟูความจำที่หายไป
+                </p>
+                <ul>
+                  <li>Cognitive Rehabilitation</li>
+                  <li>Trauma Therapy (EMDR)</li>
+                  <li>Memory Reconstruction</li>
+                </ul>
+              </button>
+
+              {/* Medical - Preserve */}
+              <button
+                className={`purpose-option ${purpose === "medical-preserve" ? "selected" : ""}`}
+                onClick={() => setPurpose("medical-preserve")}
+                type="button"
+              >
+                <div className="purpose-opt-icon preserve-icon">
+                  <svg viewBox="0 0 40 40" width="36" height="36" fill="none">
+                    <rect x="8" y="6" width="24" height="28" rx="3" stroke="currentColor" strokeWidth="2" />
+                    <path d="M 14 14 L 26 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                    <path d="M 14 19 L 26 19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                    <path d="M 14 24 L 22 24" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                    <path d="M 24 22 L 24 30 L 32 30 L 32 22 Z" fill="rgba(98, 241, 212, 0.2)" stroke="currentColor" strokeWidth="1.5" />
+                    <path d="M 26 26 L 28 28 L 32 24" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+                <h3>รักษา/เก็บรักษาความทรงจำ</h3>
+                <span className="purpose-opt-category">ทางการแพทย์</span>
+                <p>
+                  สำรองข้อมูลความทรงจำก่อนที่จะเสื่อมสภาพ ใช้สำหรับ Digital Legacy
+                  หรือเก็บไว้เพื่อส่งต่อให้ครอบครัวในอนาคต
+                </p>
+                <ul>
+                  <li>Digital Legacy Backup</li>
+                  <li>Pre-deterioration Archive</li>
+                  <li>Family Memory Transfer</li>
+                </ul>
+              </button>
+
+              {/* Judicial */}
+              <button
+                className={`purpose-option judicial ${purpose === "judicial" ? "selected" : ""}`}
+                onClick={() => setPurpose("judicial")}
+                type="button"
+              >
+                <div className="purpose-opt-icon judicial-icon">
+                  <svg viewBox="0 0 40 40" width="36" height="36" fill="none">
+                    <path d="M 20 4 L 20 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M 20 8 L 8 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M 20 8 L 32 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M 4 15 C 4 15 8 22 12 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M 28 15 C 28 15 32 22 36 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M 20 8 L 20 30" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M 14 30 L 26 30" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M 12 34 L 28 34" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                </div>
+                <h3>หลักฐานทางตุลาการ</h3>
+                <span className="purpose-opt-category judicial-cat">ทางกฎหมาย</span>
+                <p>
+                  ดึงความทรงจำของพยานหรือผู้เสียหายเพื่อใช้เป็นหลักฐานในการตัดสินคดี
+                  ข้อมูลจะถูกรับรองความถูกต้องสำหรับใช้ในกระบวนการยุติธรรม
+                </p>
+                <ul>
+                  <li>หลักฐานคดีอาญา</li>
+                  <li>การสืบสวนสอบสวน</li>
+                  <li>Chain of Custody Certified</li>
+                </ul>
+              </button>
+            </div>
+
+            <div className="purpose-select-actions">
+              <button
+                className="primary-button"
+                disabled={purpose === null}
+                onClick={() => setPhase("connect")}
+                type="button"
+              >
+                ดำเนินการต่อ
+              </button>
+              <small>
+                {purpose === "medical-restore" && "โหมด: ฟื้นฟูความทรงจำ — ระบบจะเน้นสแกนพื้นที่ Hippocampus"}
+                {purpose === "medical-preserve" && "โหมด: เก็บรักษาความทรงจำ — ระบบจะสแกนแบบ Full Archive"}
+                {purpose === "judicial" && "โหมด: ตุลาการ — ระบบจะเปิด Chain of Custody และ Audit Log อัตโนมัติ"}
+                {purpose === null && "กรุณาเลือกวัตถุประสงค์เพื่อดำเนินการต่อ"}
+              </small>
+            </div>
+          </div>
+        )}
 
         {/* Phase 1: Connect Device */}
         {phase === "connect" && (
@@ -195,35 +335,43 @@ export function MedicalDownload() {
                 </svg>
               </div>
               <div>
-                <strong>โหมดทางการแพทย์ — ต้องเชื่อมต่ออุปกรณ์ก่อน</strong>
+                <strong>
+                  {purpose === "judicial"
+                    ? "โหมดตุลาการ — Chain of Custody เปิดใช้งาน"
+                    : "โหมดทางการแพทย์ — ต้องเชื่อมต่ออุปกรณ์ก่อน"}
+                </strong>
                 <p>
-                  การสแกนความทรงจำต้องใช้อุปกรณ์ NeuroLens ในโหมด Deep Memory Access
-                  ข้อมูลทั้งหมดจะถูกเข้ารหัส end-to-end และบันทึกลง audit log
+                  {purpose === "judicial"
+                    ? "การสแกนความทรงจำจะถูกบันทึกลงระบบ ข้อมูลทั้งหมดได้รับการรับรองสำหรับใช้ในชั้นศาล"
+                    : "การสแกนความทรงจำต้องใช้อุปกรณ์ NeuroLens ในโหมด Deep Memory Access ข้อมูลทั้งหมดได้รับการปกป้อง"}
                 </p>
               </div>
             </div>
 
             <div className="med-connect-grid">
               <div className="med-connect-visual">
-                <div className={`med-device-orb ${connectStatus}`}>
-                  <div className="med-orb-ring outer" />
-                  <div className="med-orb-ring inner" />
-                  <div className="med-orb-core">
-                    <svg viewBox="0 0 48 48" width="40" height="40" fill="none">
-                      <rect x="14" y="8" width="20" height="32" rx="4" stroke="currentColor" strokeWidth="2" />
-                      <circle cx="24" cy="20" r="5" stroke="currentColor" strokeWidth="1.5" />
-                      <path d="M 20 30 L 28 30" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                      <path d="M 22 34 L 26 34" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    </svg>
-                  </div>
+                <div className={`device-glow-ring ${connectStatus}`} />
+                <div className={`device-glow-ring inner ${connectStatus}`} />
+                <div className={`device-image-wrap ${connectStatus}`}>
+                  <Image
+                    src="/device-ep.png"
+                    alt="Brain device concept"
+                    width={1100}
+                    height={700}
+                    priority
+                    className="device-img"
+                  />
                 </div>
               </div>
 
               <div className="med-connect-info">
                 <h2>NeuroLens Mini — Deep Memory Mode</h2>
                 <p>
-                  อุปกรณ์จะเข้าถึงพื้นที่ Hippocampus และ Temporal Lobe
-                  เพื่อสแกนและถอดรหัสภาพความทรงจำที่เก็บไว้ในสมอง
+                  {purpose === "judicial"
+                    ? "อุปกรณ์จะเข้าถึงพื้นที่ความทรงจำเพื่อดึงหลักฐานสำหรับกระบวนการยุติธรรม ข้อมูลจะถูกรับรองด้วย Chain of Custody อัตโนมัติ"
+                    : purpose === "medical-preserve"
+                      ? "อุปกรณ์จะสแกนและเก็บรักษาความทรงจำทั้งหมดในรูปแบบ Full Archive เพื่อป้องกันการเสื่อมสภาพ"
+                      : "อุปกรณ์จะเข้าถึงพื้นที่ Hippocampus และ Temporal Lobe เพื่อสแกนและถอดรหัสภาพความทรงจำสำหรับการฟื้นฟู"}
                 </p>
 
                 <div className="med-specs">
@@ -236,28 +384,30 @@ export function MedicalDownload() {
                     <strong>Neural HD (4K equivalent)</strong>
                   </div>
                   <div className="med-spec-item">
-                    <span>การเข้ารหัส</span>
-                    <strong>AES-256 + Blockchain</strong>
+                    <span>ความปลอดภัย</span>
+                    <strong>ระดับสูงสุด</strong>
                   </div>
                 </div>
 
                 <div className="med-connect-actions">
-                  <button
-                    className="primary-button"
-                    disabled={connectStatus !== "idle"}
-                    onClick={handleConnect}
-                    type="button"
-                  >
-                    {connectStatus === "connecting" ? "กำลังเชื่อมต่อ..." : "เชื่อมต่ออุปกรณ์"}
-                  </button>
-                  <button
-                    className="primary-button"
-                    disabled={connectStatus !== "connected"}
-                    onClick={handleStartScan}
-                    type="button"
-                  >
-                    เริ่มสแกนความทรงจำ
-                  </button>
+                  {connectStatus !== "connected" ? (
+                    <button
+                      className="primary-button"
+                      disabled={connectStatus === "connecting"}
+                      onClick={handleConnect}
+                      type="button"
+                    >
+                      {connectStatus === "connecting" ? "กำลังเชื่อมต่อ..." : "เชื่อมต่ออุปกรณ์"}
+                    </button>
+                  ) : (
+                    <button
+                      className="primary-button"
+                      onClick={handleStartScan}
+                      type="button"
+                    >
+                      เริ่มสแกนความทรงจำ
+                    </button>
+                  )}
                 </div>
 
                 <div className={`connection-badge ${connectStatus}`}>
@@ -345,13 +495,13 @@ export function MedicalDownload() {
             </div>
 
             <div className="download-info">
-              <strong>กำลังดาวน์โหลดและเข้ารหัสข้อมูลความทรงจำ...</strong>
-              <p>ดาวน์โหลด 6 ไฟล์ พร้อมแนบ digital signature และ chain of custody</p>
+              <strong>กำลังดาวน์โหลดข้อมูลความทรงจำ...</strong>
+              <p>ดาวน์โหลด 6 ไฟล์ พร้อมรับรองความถูกต้อง</p>
               <div className="progress-block">
                 <div className="progress-track">
                   <span style={{ width: `${progress}%` }} />
                 </div>
-                <small>{Math.round(progress)}% — กำลังเข้ารหัส AES-256 และบีบอัดข้อมูล</small>
+                <small>{Math.round(progress)}% — กำลังประมวลผลและบีบอัดข้อมูล</small>
               </div>
             </div>
           </div>
@@ -376,20 +526,20 @@ export function MedicalDownload() {
 
             <div className="complete-details">
               <div className="detail-card">
-                <span>สถานะการเข้ารหัส</span>
-                <strong>AES-256 Encrypted ✓</strong>
+                <span>สถานะข้อมูล</span>
+                <strong>ปลอดภัย ✓</strong>
               </div>
               <div className="detail-card">
-                <span>Digital Signature</span>
-                <strong>SHA-512 Signed ✓</strong>
+                <span>การรับรอง</span>
+                <strong>รับรองแล้ว ✓</strong>
               </div>
               <div className="detail-card">
-                <span>Audit Log</span>
+                <span>บันทึกการเข้าถึง</span>
                 <strong>บันทึกแล้ว ✓</strong>
               </div>
               <div className="detail-card">
-                <span>Chain of Custody</span>
-                <strong>Blockchain Verified ✓</strong>
+                <span>ความถูกต้อง</span>
+                <strong>ตรวจสอบแล้ว ✓</strong>
               </div>
             </div>
 
@@ -401,8 +551,8 @@ export function MedicalDownload() {
             </div>
 
             <div className="complete-actions">
-              <button className="primary-button" onClick={() => setPhase("gallery")} type="button">
-                ดูภาพความทรงจำที่ดาวน์โหลด
+              <button className="primary-button" onClick={() => setPhase("report")} type="button">
+                ดูรายงานสรุป
               </button>
               <Link className="secondary-button link-button" href="/">
                 กลับหน้าหลัก
@@ -411,7 +561,131 @@ export function MedicalDownload() {
           </div>
         )}
 
-        {/* Phase 5: Gallery */}
+        {/* Phase 5: Report Summary */}
+        {phase === "report" && (
+          <div className="report-section">
+            {/* Memory list summary */}
+            <div className="report-list-panel panel">
+              <div className="panel-header">
+                <div>
+                  <span className="eyebrow">Memory Files</span>
+                  <h2>รายการความทรงจำที่สแกนได้</h2>
+                </div>
+                <span className="status-chip connected">6 ไฟล์</span>
+              </div>
+
+              <div className="report-file-list">
+                {memoryPreviews.map((item, index) => (
+                  <div className="report-file-row" key={item.id}>
+                    <span className="report-file-num">{String(index + 1).padStart(2, "0")}</span>
+                    <div className="report-file-info">
+                      <strong>{item.title}</strong>
+                      <span>{item.date} · {item.type} · {item.emotion}</span>
+                    </div>
+                    <span className={`file-type type-${item.type === "scene" ? "contextual" : item.type === "image" ? "visual" : item.type}`}>
+                      {item.type}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Two column: Medical + Legal */}
+            <div className="report-columns">
+              {/* Medical Use */}
+              <div className="report-card panel">
+                <div className="report-card-icon medical-use-icon">
+                  <svg viewBox="0 0 40 40" width="36" height="36" fill="none">
+                    <rect x="15" y="4" width="10" height="32" rx="2" stroke="currentColor" strokeWidth="1.8" />
+                    <rect x="4" y="15" width="32" height="10" rx="2" stroke="currentColor" strokeWidth="1.8" />
+                  </svg>
+                </div>
+                <h3>การใช้งานทางการแพทย์</h3>
+                <p className="report-card-desc">
+                  ข้อมูลความทรงจำสามารถนำไปใช้ประกอบการรักษาทางจิตเวชได้ดังนี้
+                </p>
+
+                <ul className="report-use-list">
+                  <li>
+                    <strong>Trauma Therapy (EMDR)</strong>
+                    <span>ใช้ภาพความทรงจำเพื่อ reprocess เหตุการณ์ที่กระทบจิตใจ ช่วยลดอาการ PTSD</span>
+                  </li>
+                  <li>
+                    <strong>Cognitive Rehabilitation</strong>
+                    <span>ฟื้นฟูความจำในผู้ป่วยที่มีปัญหาด้านความจำ เช่น Alzheimer&apos;s ระยะเริ่มต้น</span>
+                  </li>
+                  <li>
+                    <strong>Emotional Mapping</strong>
+                    <span>วิเคราะห์รูปแบบอารมณ์ที่เชื่อมโยงกับความทรงจำ เพื่อวางแผนการบำบัด</span>
+                  </li>
+                  <li>
+                    <strong>Baseline Assessment</strong>
+                    <span>ใช้เป็นข้อมูลอ้างอิงสถานะจิตใจ ณ เวลาที่สแกน สำหรับเปรียบเทียบในอนาคต</span>
+                  </li>
+                </ul>
+
+                <div className="report-card-footer">
+                  <span className="report-badge medical-badge">สำหรับแพทย์ผู้เชี่ยวชาญเท่านั้น</span>
+                </div>
+              </div>
+
+              {/* Legal / Justice Use */}
+              <div className="report-card panel">
+                <div className="report-card-icon legal-use-icon">
+                  <svg viewBox="0 0 40 40" width="36" height="36" fill="none">
+                    <path d="M 20 4 L 20 8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                    <path d="M 20 8 L 6 16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                    <path d="M 20 8 L 34 16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                    <path d="M 2 16 C 2 16 6 24 10 16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                    <path d="M 30 16 C 30 16 34 24 38 16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                    <path d="M 16 32 L 24 32" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                    <path d="M 12 36 L 28 36" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                    <path d="M 20 8 L 20 32" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                  </svg>
+                </div>
+                <h3>การใช้งานทางกฎหมาย / ยุติธรรม</h3>
+                <p className="report-card-desc">
+                  ข้อมูลที่ผ่านการรับรองสามารถใช้เป็นหลักฐานในกระบวนการยุติธรรมได้
+                </p>
+
+                <ul className="report-use-list">
+                  <li>
+                    <strong>หลักฐานทางคดีอาญา</strong>
+                    <span>ภาพความทรงจำที่ได้รับการรับรองสามารถใช้ยืนยันเหตุการณ์ในชั้นศาลได้</span>
+                  </li>
+                  <li>
+                    <strong>การสืบสวนสอบสวน</strong>
+                    <span>ช่วยเจ้าหน้าที่ตำรวจในการรวบรวมข้อมูลจากพยานหรือผู้เสียหาย</span>
+                  </li>
+                  <li>
+                    <strong>คดีแพ่ง / ครอบครัว</strong>
+                    <span>ใช้ประกอบการพิจารณาสิทธิ์ในคดีมรดก, Digital Legacy หรือข้อพิพาทครอบครัว</span>
+                  </li>
+                  <li>
+                    <strong>Chain of Custody</strong>
+                    <span>ข้อมูลทุกไฟล์มีการบันทึกที่ไม่สามารถแก้ไขย้อนหลังได้</span>
+                  </li>
+                </ul>
+
+                <div className="report-card-footer">
+                  <span className="report-badge legal-badge">ต้องมีหมายศาลหรือความยินยอม</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="report-actions">
+              <button className="primary-button" onClick={() => setPhase("gallery")} type="button">
+                ดูภาพความทรงจำ
+              </button>
+              <Link className="secondary-button link-button" href="/">
+                กลับหน้าหลัก
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {/* Phase 6: Gallery */}
         {phase === "gallery" && (
           <div className="gallery-section">
             <div className="gallery-grid">
