@@ -22,10 +22,10 @@ const SCAN_DURATION_MS = 10000;
 const TICK_INTERVAL_MS = 100;
 
 const scanMessages = [
-  "กำลังอ่านคลื่นสมองและจัดตำแหน่งเซนเซอร์",
-  "กำลังจับ pattern ของสัญญาณประสาท",
-  "กำลังแปลงสัญญาณเป็นค่า monitoring แบบเรียลไทม์",
-  "ระบบกำลังตรวจสอบคุณภาพข้อมูลก่อนบันทึก"
+  "Reading brainwaves and aligning sensor positions",
+  "Capturing neural signal patterns",
+  "Converting signals to real-time monitoring values",
+  "System verifying data quality before recording"
 ];
 
 function formatMetric(label: string, frame: number): SignalCard {
@@ -51,7 +51,7 @@ function formatMetric(label: string, frame: number): SignalCard {
     case "Sleep":
       return {
         label,
-        value: `${(7.1 + ((frame % 5) * 0.1)).toFixed(1)} ชม.`,
+        value: `${(7.1 + ((frame % 5) * 0.1)).toFixed(1)} hrs`,
         delta: `+0.${frame % 9}`
       };
     default:
@@ -119,7 +119,7 @@ export function ScanMonitor({ initialDevice }: ScanMonitorProps) {
   );
 
   const currentMessage = phase === "complete"
-    ? "สแกนเสร็จสมบูรณ์ ข้อมูลพร้อมสำหรับการวิเคราะห์"
+    ? "Scan complete. Data ready for analysis"
     : scanMessages[Math.floor(frame / 10) % scanMessages.length];
 
   return (
@@ -128,14 +128,14 @@ export function ScanMonitor({ initialDevice }: ScanMonitorProps) {
         <div className="scan-topbar">
           <div>
             <span className="eyebrow">Brain Scan</span>
-            <h1>{phase === "complete" ? "สแกนเสร็จสมบูรณ์" : "กำลังสแกนและแปลงสัญญาณสมอง"}</h1>
+            <h1>{phase === "complete" ? "Scan Complete" : "Scanning and decoding brain signals"}</h1>
           </div>
           <div className="topbar-actions">
             <Link className="secondary-button link-button" href="/connect">
-              กลับไปหน้าเชื่อมต่อ
+              Back to connect
             </Link>
             <Link className="secondary-button link-button" href="/">
-              ← หน้าหลัก
+              ← Home
             </Link>
           </div>
         </div>
@@ -167,7 +167,7 @@ export function ScanMonitor({ initialDevice }: ScanMonitorProps) {
               <div className="panel-header">
                 <div>
                   <span className="eyebrow">Live Signals</span>
-                  <h2>{phase === "complete" ? "ผลลัพธ์สุดท้าย" : "ค่าที่ตรวจพบระหว่างสแกน"}</h2>
+                  <h2>{phase === "complete" ? "Final Results" : "Values detected during scan"}</h2>
                 </div>
                 <span className={`status-chip ${phase === "complete" ? "complete" : "connected"}`}>
                   {phase === "complete" ? "Complete" : "Connected"}
@@ -189,26 +189,26 @@ export function ScanMonitor({ initialDevice }: ScanMonitorProps) {
               <div className="panel-header">
                 <div>
                   <span className="eyebrow">Telemetry</span>
-                  <h2>สถานะการตรวจจับ</h2>
+                  <h2>Detection Status</h2>
                 </div>
               </div>
 
               <div className="telemetry-list">
                 <div className="telemetry-row">
-                  <span>คุณภาพสัญญาณ</span>
+                  <span>Signal Quality</span>
                   <strong>{phase === "complete" ? "98%" : `${88 + (frame % 10)}%`}</strong>
                 </div>
                 <div className="telemetry-row">
-                  <span>ตำแหน่งเซนเซอร์</span>
-                  <strong>เสถียร</strong>
+                  <span>Sensor Position</span>
+                  <strong>Stable</strong>
                 </div>
                 <div className="telemetry-row">
-                  <span>โหมดการสแกน</span>
+                  <span>Scan Mode</span>
                   <strong>{phase === "complete" ? "Scan Complete" : "Neural Pattern Decode"}</strong>
                 </div>
                 <div className="telemetry-row">
-                  <span>เวลาที่ใช้</span>
-                  <strong>{elapsedSeconds} วินาที</strong>
+                  <span>Elapsed Time</span>
+                  <strong>{elapsedSeconds} sec</strong>
                 </div>
               </div>
 

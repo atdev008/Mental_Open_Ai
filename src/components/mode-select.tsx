@@ -10,14 +10,14 @@ export function ModeSelect() {
       <section className="mode-screen panel glow">
         <div className="mode-header">
           <span className="eyebrow">Neural Memory Interface</span>
-          <h1>เลือกโหมดการใช้งาน DEMO</h1>
+          <h1>Select Mode — DEMO</h1>
           <p className="mode-subtitle">
-            ระบบรองรับทั้งการใช้งานส่วนบุคคล ทางการแพทย์ และทางกฎหมาย
-            กรุณาเลือกโหมดที่ตรงกับวัตถุประสงค์ของคุณ
+            Choose the mode that matches your purpose.
+            This system supports personal health scanning powered by AI.
           </p>
         </div>
 
-        <div className="mode-grid three-col">
+        <div className="mode-grid centered">
           {/* Personal Mode */}
           <button
             className="mode-card"
@@ -35,24 +35,24 @@ export function ModeSelect() {
                 />
               </svg>
             </div>
-            <h2>บุคคลทั่วไป</h2>
+            <h2>Personal</h2>
             <p>
-              สแกนสมองเพื่อตรวจสุขภาพจิตเบื้องต้น วิเคราะห์ความเครียด
-              คุณภาพการนอน และสมาธิ พร้อมรับคำแนะนำจาก AI
+              Brain scan for preliminary mental health assessment.
+              Analyze stress, sleep quality, and focus with AI-powered recommendations.
             </p>
             <ul className="mode-features">
-              <li>สแกนคลื่นสมอง EEG</li>
-              <li>วิเคราะห์ความเครียดและ HRV</li>
-              <li>รายงานผลวินิจฉัยเบื้องต้น</li>
-              <li>คำแนะนำดูแลสุขภาพจิต</li>
+              <li>EEG Brain Wave Scan</li>
+              <li>Stress & HRV Analysis</li>
+              <li>Preliminary Diagnosis Report</li>
+              <li>AI Health Recommendations</li>
             </ul>
             <span className="mode-cta">
-              เริ่มสแกนสุขภาพสมอง →
+              Start Brain Scan →
             </span>
           </button>
 
-          {/* Medical Mode */}
-          <button
+          {/* Medical Mode - Hidden */}
+          {/* <button
             className="mode-card medical"
             onClick={() => router.push("/medical?purpose=medical")}
             type="button"
@@ -78,10 +78,10 @@ export function ModeSelect() {
               เข้าสู่โหมดทางการแพทย์ →
             </span>
             <small className="mode-restriction">* เปิดใช้เมื่อได้รับใบอนุญาตจากแพทย์ผู้เชี่ยวชาญเท่านั้น</small>
-          </button>
+          </button> */}
 
-          {/* Judicial Mode */}
-          <button
+          {/* Judicial Mode - Hidden */}
+          {/* <button
             className="mode-card judicial"
             onClick={() => router.push("/medical?purpose=judicial")}
             type="button"
@@ -113,7 +113,7 @@ export function ModeSelect() {
               เข้าสู่โหมดตุลาการ →
             </span>
             <small className="mode-restriction">* เปิดใช้เมื่อมีเอกสารทางคดีหรือหมายศาลเท่านั้น</small>
-          </button>
+          </button> */}
         </div>
       </section>
     </main>

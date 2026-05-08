@@ -20,7 +20,7 @@ export function DeviceConnect({ initialDevice }: DeviceConnectProps) {
   const router = useRouter();
   const [device, setDevice] = useState(initialDevice);
   const [phase, setPhase] = useState<ConnectionPhase>(getInitialPhase(initialDevice.connection));
-  const [message, setMessage] = useState("อุปกรณ์พร้อมจับคู่กับระบบสแกนสมอง");
+  const [message, setMessage] = useState("Device ready to pair with brain scan system");
 
   async function handleConnect() {
     if (phase !== "idle") {
@@ -28,7 +28,7 @@ export function DeviceConnect({ initialDevice }: DeviceConnectProps) {
     }
 
     setPhase("connecting");
-    setMessage("กำลังค้นหาอุปกรณ์และจับคู่สัญญาณ...");
+    setMessage("Searching for device and pairing signal...");
 
     await new Promise((resolve) => window.setTimeout(resolve, 1800));
 
@@ -39,7 +39,7 @@ export function DeviceConnect({ initialDevice }: DeviceConnectProps) {
 
     setDevice(nextDevice);
     setPhase("connected");
-    setMessage("เชื่อมต่อสำเร็จ พร้อมเริ่มสแกนสมอง");
+    setMessage("Connected successfully. Ready to start brain scan");
   }
 
   function handleStartScan() {
@@ -56,15 +56,15 @@ export function DeviceConnect({ initialDevice }: DeviceConnectProps) {
         <div className="connect-topbar">
           <div className="eyebrow">Neural Device Link</div>
           <Link className="secondary-button link-button" href="/">
-            ← กลับหน้าเลือกโหมด
+            ← Back to mode selection
           </Link>
         </div>
         <div className="connect-grid">
           <div className="connect-copy">
-            <h1>เชื่อมต่ออุปกรณ์ก่อนเริ่มสแกนสมอง</h1>
+            <h1>Connect device before starting brain scan</h1>
             <p>
-              ใช้ภาพอุปกรณ์จากต้นแบบเป็นจุดเริ่มต้นของ flow จริง: จับคู่, ยืนยันการเชื่อมต่อ,
-              แล้วค่อยเข้าสู่หน้าสแกนสัญญาณสมอง
+              Use the device image from the prototype as the starting point of the actual flow: pair, confirm connection,
+              then proceed to the brain signal scan page
             </p>
 
             <div className="connect-stats">
@@ -90,7 +90,7 @@ export function DeviceConnect({ initialDevice }: DeviceConnectProps) {
                   onClick={handleConnect}
                   type="button"
                 >
-                  {phase === "connecting" ? "กำลังเชื่อมต่อ..." : "เชื่อมต่ออุปกรณ์"}
+                  {phase === "connecting" ? "Connecting..." : "Connect Device"}
                 </button>
               ) : (
                 <button
@@ -98,7 +98,7 @@ export function DeviceConnect({ initialDevice }: DeviceConnectProps) {
                   onClick={handleStartScan}
                   type="button"
                 >
-                  เริ่มสแกน
+                  Start Scan
                 </button>
               )}
             </div>
@@ -106,9 +106,9 @@ export function DeviceConnect({ initialDevice }: DeviceConnectProps) {
             <div className={`connection-badge ${phase}`}>
               <span className="badge-dot" />
               <strong>
-                {phase === "idle" && "ยังไม่ได้เชื่อมต่อ"}
-                {phase === "connecting" && "กำลังเชื่อมต่อ"}
-                {phase === "connected" && "เชื่อมต่อสำเร็จ"}
+                {phase === "idle" && "Not Connected"}
+                {phase === "connecting" && "Connecting"}
+                {phase === "connected" && "Connected"}
               </strong>
               <small>{message}</small>
             </div>
@@ -132,8 +132,8 @@ export function DeviceConnect({ initialDevice }: DeviceConnectProps) {
               <strong>{phase === "connected" ? "Secure Link Online" : "Awaiting Pairing"}</strong>
               <small>
                 {phase === "connected"
-                  ? `คุณภาพสัญญาณเริ่มต้น ${device.signalQuality}%`
-                  : "กดเชื่อมต่อเพื่อเริ่มทำ handshake ระหว่างอุปกรณ์กับระบบ"}
+                  ? `Initial signal quality ${device.signalQuality}%`
+                  : "Press connect to initiate handshake between device and system"}
               </small>
             </div>
           </div>

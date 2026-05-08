@@ -1773,6 +1773,11 @@ button {
   max-width: 1100px;
 }
 
+.mode-grid.centered {
+  grid-template-columns: minmax(0, 420px);
+  justify-content: center;
+}
+
 .mode-card {
   display: flex;
   flex-direction: column;

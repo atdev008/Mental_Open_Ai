@@ -371,7 +371,7 @@ export function MedicalDownload() {
                     ? "อุปกรณ์จะเข้าถึงพื้นที่ความทรงจำเพื่อดึงหลักฐานสำหรับกระบวนการยุติธรรม ข้อมูลจะถูกรับรองด้วย Chain of Custody อัตโนมัติ"
                     : purpose === "medical-preserve"
                       ? "อุปกรณ์จะสแกนและเก็บรักษาความทรงจำทั้งหมดในรูปแบบ Full Archive เพื่อป้องกันการเสื่อมสภาพ"
-                      : "อุปกรณ์จะเข้าถึงพื้นที่ Hippocampus และ Temporal Lobe เพื่อสแกนและถอดรหัสภาพความทรงจำสำหรับการฟื้นฟู"}
+                      : "อุปกรณ์จะเข้าถึงพื้นที่ Visual Experience Reconstruction (from Neural Decoding) เพื่อสแกนและถอดรหัสภาพความทรงจำสำหรับการฟื้นฟู"}
                 </p>
 
                 <div className="med-specs">
