@@ -17,51 +17,51 @@ type DiagnosisResult = {
 const PROCESSING_DURATION_MS = 5000;
 
 const processingSteps = [
-  "กำลังวิเคราะห์รูปแบบคลื่นสมอง EEG...",
-  "กำลังเปรียบเทียบกับฐานข้อมูลทางการแพทย์...",
-  "กำลังประเมินระดับความเครียดและ HRV...",
-  "กำลังตรวจสอบรูปแบบการนอนหลับ...",
-  "กำลังสร้างรายงานผลวินิจฉัย..."
+  "Analyzing EEG brainwave patterns...",
+  "Comparing with medical database...",
+  "Evaluating stress levels and HRV...",
+  "Checking sleep patterns...",
+  "Generating diagnosis report..."
 ];
 
 const diagnosisResults: DiagnosisResult[] = [
   {
     id: "mild-anxiety",
-    condition: "ภาวะวิตกกังวลเล็กน้อย (Mild Anxiety)",
+    condition: "Mild Anxiety",
     probability: 72,
     severity: "low",
     description:
-      "พบรูปแบบคลื่น Beta สูงกว่าปกติเล็กน้อยในบริเวณ Prefrontal Cortex บ่งชี้ถึงภาวะวิตกกังวลระดับต่ำ",
-    recommendation: "แนะนำฝึกการหายใจลึก, ทำสมาธิ 10 นาทีต่อวัน และนอนหลับให้เพียงพอ"
+      "Slightly elevated Beta wave patterns detected in the Prefrontal Cortex area, indicating low-level anxiety",
+    recommendation: "Recommended: practice deep breathing, meditate 10 minutes daily, and ensure adequate sleep"
   },
   {
     id: "sleep-disruption",
-    condition: "คุณภาพการนอนหลับผิดปกติ (Sleep Disruption)",
+    condition: "Sleep Disruption",
     probability: 58,
     severity: "moderate",
     description:
-      "สัญญาณ Delta wave ในช่วง Deep Sleep ต่ำกว่าเกณฑ์ปกติ อาจส่งผลต่อการฟื้นฟูร่างกายและความจำ",
+      "Delta wave signals during Deep Sleep are below normal thresholds, which may affect physical recovery and memory",
     recommendation:
-      "แนะนำหลีกเลี่ยงหน้าจอก่อนนอน 1 ชม., รักษาเวลานอนให้สม่ำเสมอ และพิจารณาปรึกษาแพทย์ด้านการนอน"
+      "Recommended: avoid screens 1 hour before bed, maintain a consistent sleep schedule, and consider consulting a sleep specialist"
   },
   {
     id: "focus-deficit",
-    condition: "สมาธิสั้นชั่วคราว (Temporary Attention Deficit)",
+    condition: "Temporary Attention Deficit",
     probability: 45,
     severity: "low",
     description:
-      "พบการกระจายตัวของคลื่น Alpha ไม่สม่ำเสมอ อาจเกิดจากความเหนื่อยล้าสะสมหรือขาดการพักผ่อน",
-    recommendation: "แนะนำพักสมองทุก 45 นาที, ออกกำลังกายเบาๆ และดื่มน้ำให้เพียงพอ"
+      "Irregular Alpha wave distribution detected, possibly caused by accumulated fatigue or lack of rest",
+    recommendation: "Recommended: take brain breaks every 45 minutes, do light exercise, and stay hydrated"
   },
   {
     id: "stress-accumulation",
-    condition: "ความเครียดสะสม (Chronic Stress Indicators)",
+    condition: "Chronic Stress Indicators",
     probability: 63,
     severity: "moderate",
     description:
-      "ค่า HRV ต่ำกว่าเกณฑ์ร่วมกับ Cortisol pattern ที่ผิดปกติ บ่งชี้ถึงความเครียดสะสมในระยะยาว",
+      "Low HRV combined with abnormal Cortisol patterns indicates long-term accumulated stress",
     recommendation:
-      "แนะนำปรับสมดุลชีวิตการทำงาน, ฝึกโยคะหรือ Mindfulness และพิจารณาพบนักจิตวิทยา"
+      "Recommended: improve work-life balance, practice yoga or Mindfulness, and consider seeing a psychologist"
   }
 ];
 
@@ -103,14 +103,14 @@ export function Results() {
         <div className="scan-topbar">
           <div>
             <span className="eyebrow">Analysis Results</span>
-            <h1>{phase === "complete" ? "ผลการวินิจฉัย" : "กำลังประมวลผลข้อมูลสมอง"}</h1>
+            <h1>{phase === "complete" ? "Diagnosis Results" : "Processing brain data"}</h1>
           </div>
           <div className="topbar-actions">
             <Link className="secondary-button link-button" href="/scan">
-              กลับไปหน้าสแกน
+              Back to scan
             </Link>
             <Link className="secondary-button link-button" href="/">
-              ← หน้าหลัก
+              ← Home
             </Link>
           </div>
         </div>
@@ -183,7 +183,7 @@ export function Results() {
                 <div className="progress-track">
                   <span style={{ width: `${progress}%` }} />
                 </div>
-                <small>AI กำลังวิเคราะห์ข้อมูลจากการสแกนสมอง</small>
+                <small>AI is analyzing data from the brain scan</small>
               </div>
             </div>
           </div>
@@ -200,8 +200,8 @@ export function Results() {
                   </svg>
                 </div>
                 <div>
-                  <h2>การวิเคราะห์เสร็จสมบูรณ์</h2>
-                  <p>ระบบตรวจพบ {diagnosisResults.length} รายการที่ควรให้ความสนใจ</p>
+                  <h2>Analysis Complete</h2>
+                  <p>System detected {diagnosisResults.length} items that require attention</p>
                 </div>
               </div>
             </div>
@@ -212,9 +212,9 @@ export function Results() {
                   <div className="diagnosis-card-header">
                     <h3>{result.condition}</h3>
                     <span className={`severity-badge severity-${result.severity}`}>
-                      {result.severity === "low" && "ต่ำ"}
-                      {result.severity === "moderate" && "ปานกลาง"}
-                      {result.severity === "high" && "สูง"}
+                      {result.severity === "low" && "Low"}
+                      {result.severity === "moderate" && "Moderate"}
+                      {result.severity === "high" && "High"}
                     </span>
                   </div>
 
@@ -225,13 +225,13 @@ export function Results() {
                         style={{ width: `${result.probability}%` }}
                       />
                     </div>
-                    <small>ความน่าจะเป็น {result.probability}%</small>
+                    <small>Probability {result.probability}%</small>
                   </div>
 
                   <p className="diagnosis-desc">{result.description}</p>
 
                   <div className="diagnosis-recommend">
-                    <span>คำแนะนำ</span>
+                    <span>Recommendation</span>
                     <p>{result.recommendation}</p>
                   </div>
                 </article>
@@ -240,9 +240,9 @@ export function Results() {
 
             <div className="results-footer">
               <p>
-                ⚠️ ผลวินิจฉัยนี้เป็นเพียงการประเมินเบื้องต้นจาก AI
-                ไม่สามารถใช้แทนการวินิจฉัยจากแพทย์ผู้เชี่ยวชาญได้
-                กรุณาปรึกษาแพทย์เพื่อการวินิจฉัยที่แม่นยำ
+                ⚠️ This diagnosis is only a preliminary AI assessment
+                and cannot replace a diagnosis from a qualified medical professional.
+                Please consult a doctor for an accurate diagnosis.
               </p>
             </div>
           </div>

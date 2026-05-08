@@ -23,59 +23,59 @@ type MemoryPreview = {
 const memoryPreviews: MemoryPreview[] = [
   {
     id: "preview-001",
-    title: "วันแรกที่พบกัน",
-    description: "ภาพบรรยากาศร้านกาแฟย่านเมืองเก่า แสงอ่อนๆ ยามบ่าย ใบหน้าที่ยิ้มอยู่ตรงข้าม",
+    title: "The Day We First Met",
+    description: "Scene of a coffee shop in the old town, soft afternoon light, a smiling face across the table",
     type: "image",
-    emotion: "ตื่นเต้น / อบอุ่น",
-    date: "14 ก.พ. 2567",
+    emotion: "Excited / Warm",
+    date: "Feb 14, 2024",
     colors: ["rgba(255, 180, 120, 0.8)", "rgba(255, 122, 198, 0.6)", "rgba(84, 215, 255, 0.4)"]
   },
   {
     id: "preview-002",
-    title: "วันเกิดอายุ 5 ขวบ",
-    description: "วิดีโอความทรงจำ: เสียงเพลง Happy Birthday, แสงเทียนบนเค้ก, เสียงหัวเราะของครอบครัว",
+    title: "5th Birthday",
+    description: "Memory video: Happy Birthday song, candlelight on the cake, family laughter",
     type: "video",
-    emotion: "สุข / อบอุ่น",
-    date: "12 ธ.ค. 2576",
+    emotion: "Happy / Warm",
+    date: "Dec 12, 2033",
     duration: "2:34",
     colors: ["rgba(255, 210, 110, 0.8)", "rgba(255, 122, 198, 0.5)", "rgba(98, 241, 212, 0.4)"]
   },
   {
     id: "preview-003",
-    title: "ข้อความถึงคนที่รัก",
-    description: "บันทึกเสียงความทรงจำ: น้ำเสียงอ่อนโยน ข้อความที่ฝากไว้ให้ครอบครัวในอนาคต",
+    title: "Message to Loved Ones",
+    description: "Audio memory recording: a gentle voice, a message left for family in the future",
     type: "audio",
-    emotion: "อ่อนโยน / รัก",
-    date: "3 พ.ย. 2592",
+    emotion: "Gentle / Love",
+    date: "Nov 3, 2049",
     duration: "4:12",
     colors: ["rgba(62, 120, 255, 0.7)", "rgba(84, 215, 255, 0.6)", "rgba(98, 241, 212, 0.4)"]
   },
   {
     id: "preview-004",
-    title: "ช่วงเวลาสำคัญรับปริญญา",
-    description: "ภาพพาโนรามา 360°: เวทีรับปริญญา เสียงเชียร์ ความภูมิใจที่เห็นได้จากทุกมุม",
+    title: "Graduation Ceremony",
+    description: "360° panorama: graduation stage, cheering sounds, pride visible from every angle",
     type: "scene",
-    emotion: "ภูมิใจ / โล่งใจ",
-    date: "21 มิ.ย. 2569",
+    emotion: "Proud / Relieved",
+    date: "Jun 21, 2026",
     colors: ["rgba(98, 241, 212, 0.7)", "rgba(62, 120, 255, 0.6)", "rgba(255, 210, 110, 0.4)"]
   },
   {
     id: "preview-005",
-    title: "เหตุการณ์สำคัญ [REDACTED]",
-    description: "ข้อมูลภาพความทรงจำที่มีความอ่อนไหวสูง — ต้องได้รับอนุญาตจากศาลก่อนเปิดดู",
+    title: "Critical Event [REDACTED]",
+    description: "Highly sensitive memory image data — court authorization required before viewing",
     type: "video",
-    emotion: "— ปิดกั้น —",
-    date: "15 ส.ค. 2588",
+    emotion: "— Blocked —",
+    date: "Aug 15, 2045",
     duration: "8:45",
     colors: ["rgba(255, 80, 80, 0.6)", "rgba(180, 60, 60, 0.5)", "rgba(80, 20, 20, 0.7)"]
   },
   {
     id: "preview-006",
-    title: "Emotional Baseline ปัจจุบัน",
-    description: "แผนที่อารมณ์แบบ realtime: แสดงสถานะทางจิตใจ ณ วันที่สแกน เป็นข้อมูลอ้างอิง",
+    title: "Current Emotional Baseline",
+    description: "Real-time emotion map: displays mental state at the time of scan as reference data",
     type: "image",
-    emotion: "สงบ / ปกติ",
-    date: "8 พ.ค. 2569",
+    emotion: "Calm / Normal",
+    date: "May 8, 2026",
     colors: ["rgba(84, 215, 255, 0.6)", "rgba(98, 241, 212, 0.5)", "rgba(62, 120, 255, 0.4)"]
   }
 ];
@@ -84,11 +84,11 @@ const SCAN_DURATION_MS = 10000;
 const DOWNLOAD_DURATION_MS = 8000;
 
 const scanMessages = [
-  "กำลังเข้าถึงพื้นที่ความทรงจำระยะยาว...",
-  "กำลังถอดรหัสภาพความทรงจำจาก Hippocampus...",
-  "กำลังแยกชั้นอารมณ์ออกจากข้อมูลภาพ...",
-  "กำลังตรวจสอบความสมบูรณ์ของไฟล์ความทรงจำ...",
-  "กำลังเตรียมข้อมูลสำหรับดาวน์โหลด..."
+  "Accessing long-term memory regions...",
+  "Decoding memory images from Hippocampus...",
+  "Separating emotional layers from image data...",
+  "Verifying memory file integrity...",
+  "Preparing data for download..."
 ];
 
 export function MedicalDownload() {
@@ -171,13 +171,13 @@ export function MedicalDownload() {
 
   function getTitle() {
     switch (phase) {
-      case "purpose": return "เลือกวัตถุประสงค์การใช้งาน";
-      case "connect": return "เชื่อมต่ออุปกรณ์สแกนความทรงจำ";
-      case "scanning": return "กำลังสแกนความทรงจำ";
-      case "downloading": return "กำลังดาวน์โหลดข้อมูลความทรงจำ";
-      case "complete": return "ดาวน์โหลดเสร็จสมบูรณ์";
-      case "report": return "สรุปรายงานข้อมูลความทรงจำ";
-      case "gallery": return "ภาพความทรงจำที่ดาวน์โหลด";
+      case "purpose": return "Select Purpose";
+      case "connect": return "Connect Memory Scan Device";
+      case "scanning": return "Scanning Memories";
+      case "downloading": return "Downloading Memory Data";
+      case "complete": return "Download Complete";
+      case "report": return "Memory Data Report Summary";
+      case "gallery": return "Downloaded Memory Gallery";
     }
   }
 
@@ -192,16 +192,16 @@ export function MedicalDownload() {
           <div className="topbar-actions">
             {phase === "gallery" && (
               <button className="secondary-button" onClick={() => setPhase("report")} type="button">
-                ← กลับ
+                ← Back
               </button>
             )}
             {phase === "report" && (
               <button className="secondary-button" onClick={() => setPhase("complete")} type="button">
-                ← กลับ
+                ← Back
               </button>
             )}
             <Link className="secondary-button link-button" href="/">
-              หน้าหลัก
+              Home
             </Link>
           </div>
         </div>
@@ -210,8 +210,8 @@ export function MedicalDownload() {
         {phase === "purpose" && (
           <div className="purpose-select-section">
             <p className="purpose-intro">
-              กรุณาเลือกวัตถุประสงค์ในการสแกนและดาวน์โหลดความทรงจำ
-              ระบบจะปรับโหมดการทำงานตามวัตถุประสงค์ที่เลือก
+              Please select the purpose for scanning and downloading memories.
+              The system will adjust its operating mode based on the selected purpose.
             </p>
 
             <div className="purpose-select-grid">
@@ -230,11 +230,11 @@ export function MedicalDownload() {
                     <path d="M 20 14 L 20 20 L 25 23" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
-                <h3>ฟื้นฟูความทรงจำ</h3>
-                <span className="purpose-opt-category">ทางการแพทย์</span>
+                <h3>Memory Restoration</h3>
+                <span className="purpose-opt-category">Medical</span>
                 <p>
-                  สำหรับผู้ป่วยที่สูญเสียความจำ เช่น Alzheimer&apos;s, อุบัติเหตุทางสมอง
-                  หรือ PTSD ใช้ภาพความทรงจำเพื่อกระตุ้นและฟื้นฟูความจำที่หายไป
+                  For patients with memory loss, such as Alzheimer&apos;s, brain injuries,
+                  or PTSD. Uses memory images to stimulate and restore lost memories.
                 </p>
                 <ul>
                   <li>Cognitive Rehabilitation</li>
@@ -259,11 +259,11 @@ export function MedicalDownload() {
                     <path d="M 26 26 L 28 28 L 32 24" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
-                <h3>รักษา/เก็บรักษาความทรงจำ</h3>
-                <span className="purpose-opt-category">ทางการแพทย์</span>
+                <h3>Memory Preservation</h3>
+                <span className="purpose-opt-category">Medical</span>
                 <p>
-                  สำรองข้อมูลความทรงจำก่อนที่จะเสื่อมสภาพ ใช้สำหรับ Digital Legacy
-                  หรือเก็บไว้เพื่อส่งต่อให้ครอบครัวในอนาคต
+                  Back up memory data before deterioration. Used for Digital Legacy
+                  or to preserve and pass on to family in the future.
                 </p>
                 <ul>
                   <li>Digital Legacy Backup</li>
@@ -290,15 +290,15 @@ export function MedicalDownload() {
                     <path d="M 12 34 L 28 34" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                 </div>
-                <h3>หลักฐานทางตุลาการ</h3>
-                <span className="purpose-opt-category judicial-cat">ทางกฎหมาย</span>
+                <h3>Judicial Evidence</h3>
+                <span className="purpose-opt-category judicial-cat">Legal</span>
                 <p>
-                  ดึงความทรงจำของพยานหรือผู้เสียหายเพื่อใช้เป็นหลักฐานในการตัดสินคดี
-                  ข้อมูลจะถูกรับรองความถูกต้องสำหรับใช้ในกระบวนการยุติธรรม
+                  Extract memories from witnesses or victims for use as evidence in court proceedings.
+                  Data will be certified for use in the justice system.
                 </p>
                 <ul>
-                  <li>หลักฐานคดีอาญา</li>
-                  <li>การสืบสวนสอบสวน</li>
+                  <li>Criminal Case Evidence</li>
+                  <li>Investigation & Inquiry</li>
                   <li>Chain of Custody Certified</li>
                 </ul>
               </button>
@@ -311,13 +311,13 @@ export function MedicalDownload() {
                 onClick={() => setPhase("connect")}
                 type="button"
               >
-                ดำเนินการต่อ
+                Continue
               </button>
               <small>
-                {purpose === "medical-restore" && "โหมด: ฟื้นฟูความทรงจำ — ระบบจะเน้นสแกนพื้นที่ Hippocampus"}
-                {purpose === "medical-preserve" && "โหมด: เก็บรักษาความทรงจำ — ระบบจะสแกนแบบ Full Archive"}
-                {purpose === "judicial" && "โหมด: ตุลาการ — ระบบจะเปิด Chain of Custody และ Audit Log อัตโนมัติ"}
-                {purpose === null && "กรุณาเลือกวัตถุประสงค์เพื่อดำเนินการต่อ"}
+                {purpose === "medical-restore" && "Mode: Memory Restoration — System will focus scanning on the Hippocampus area"}
+                {purpose === "medical-preserve" && "Mode: Memory Preservation — System will perform a Full Archive scan"}
+                {purpose === "judicial" && "Mode: Judicial — System will enable Chain of Custody and Audit Log automatically"}
+                {purpose === null && "Please select a purpose to continue"}
               </small>
             </div>
           </div>
@@ -337,13 +337,13 @@ export function MedicalDownload() {
               <div>
                 <strong>
                   {purpose === "judicial"
-                    ? "โหมดตุลาการ — Chain of Custody เปิดใช้งาน"
-                    : "โหมดทางการแพทย์ — ต้องเชื่อมต่ออุปกรณ์ก่อน"}
+                    ? "Judicial Mode — Chain of Custody Enabled"
+                    : "Medical Mode — Device connection required"}
                 </strong>
                 <p>
                   {purpose === "judicial"
-                    ? "การสแกนความทรงจำจะถูกบันทึกลงระบบ ข้อมูลทั้งหมดได้รับการรับรองสำหรับใช้ในชั้นศาล"
-                    : "การสแกนความทรงจำต้องใช้อุปกรณ์ NeuroLens ในโหมด Deep Memory Access ข้อมูลทั้งหมดได้รับการปกป้อง"}
+                    ? "Memory scans will be recorded in the system. All data is certified for use in court."
+                    : "Memory scanning requires a NeuroLens device in Deep Memory Access mode. All data is protected."}
                 </p>
               </div>
             </div>
@@ -368,24 +368,24 @@ export function MedicalDownload() {
                 <h2>NeuroLens Mini — Deep Memory Mode</h2>
                 <p>
                   {purpose === "judicial"
-                    ? "อุปกรณ์จะเข้าถึงพื้นที่ความทรงจำเพื่อดึงหลักฐานสำหรับกระบวนการยุติธรรม ข้อมูลจะถูกรับรองด้วย Chain of Custody อัตโนมัติ"
+                    ? "The device will access memory regions to extract evidence for the justice system. Data will be certified with automatic Chain of Custody."
                     : purpose === "medical-preserve"
-                      ? "อุปกรณ์จะสแกนและเก็บรักษาความทรงจำทั้งหมดในรูปแบบ Full Archive เพื่อป้องกันการเสื่อมสภาพ"
-                      : "อุปกรณ์จะเข้าถึงพื้นที่ Visual Experience Reconstruction (from Neural Decoding) เพื่อสแกนและถอดรหัสภาพความทรงจำสำหรับการฟื้นฟู"}
+                      ? "The device will scan and preserve all memories in Full Archive format to prevent deterioration."
+                      : "The device will access the Visual Experience Reconstruction area (from Neural Decoding) to scan and decode memory images for restoration."}
                 </p>
 
                 <div className="med-specs">
                   <div className="med-spec-item">
-                    <span>โหมด</span>
+                    <span>Mode</span>
                     <strong>Deep Memory Access</strong>
                   </div>
                   <div className="med-spec-item">
-                    <span>ความละเอียด</span>
+                    <span>Resolution</span>
                     <strong>Neural HD (4K equivalent)</strong>
                   </div>
                   <div className="med-spec-item">
-                    <span>ความปลอดภัย</span>
-                    <strong>ระดับสูงสุด</strong>
+                    <span>Security</span>
+                    <strong>Maximum Level</strong>
                   </div>
                 </div>
 
@@ -397,7 +397,7 @@ export function MedicalDownload() {
                       onClick={handleConnect}
                       type="button"
                     >
-                      {connectStatus === "connecting" ? "กำลังเชื่อมต่อ..." : "เชื่อมต่ออุปกรณ์"}
+                      {connectStatus === "connecting" ? "Connecting..." : "Connect Device"}
                     </button>
                   ) : (
                     <button
@@ -405,7 +405,7 @@ export function MedicalDownload() {
                       onClick={handleStartScan}
                       type="button"
                     >
-                      เริ่มสแกนความทรงจำ
+                      Start Memory Scan
                     </button>
                   )}
                 </div>
@@ -413,9 +413,9 @@ export function MedicalDownload() {
                 <div className={`connection-badge ${connectStatus}`}>
                   <span className="badge-dot" />
                   <strong>
-                    {connectStatus === "idle" && "รอเชื่อมต่อ"}
-                    {connectStatus === "connecting" && "กำลังเชื่อมต่อ..."}
-                    {connectStatus === "connected" && "เชื่อมต่อสำเร็จ — พร้อมสแกน"}
+                    {connectStatus === "idle" && "Awaiting Connection"}
+                    {connectStatus === "connecting" && "Connecting..."}
+                    {connectStatus === "connected" && "Connected — Ready to Scan"}
                   </strong>
                 </div>
               </div>
@@ -445,15 +445,15 @@ export function MedicalDownload() {
 
               <div className="mem-scan-stats">
                 <div className="mem-stat">
-                  <span>ความทรงจำที่พบ</span>
+                  <span>Memories Found</span>
                   <strong>{Math.min(6, Math.floor(scanFrame / 16) + 1)}</strong>
                 </div>
                 <div className="mem-stat">
-                  <span>ขนาดข้อมูล</span>
+                  <span>Data Size</span>
                   <strong>{(progress * 0.138).toFixed(1)} GB</strong>
                 </div>
                 <div className="mem-stat">
-                  <span>ความสมบูรณ์</span>
+                  <span>Integrity</span>
                   <strong>{Math.min(98, 85 + Math.floor(scanFrame / 10))}%</strong>
                 </div>
               </div>
@@ -469,8 +469,8 @@ export function MedicalDownload() {
                 </div>
                 <small>
                   {progress >= 100
-                    ? "สแกนเสร็จสมบูรณ์ — กำลังเตรียมดาวน์โหลด..."
-                    : `${Math.round(progress)}% — กำลังสแกนความทรงจำจากสมอง`}
+                    ? "Scan complete — preparing download..."
+                    : `${Math.round(progress)}% — scanning memories from brain`}
                 </small>
               </div>
             </div>
@@ -495,13 +495,13 @@ export function MedicalDownload() {
             </div>
 
             <div className="download-info">
-              <strong>กำลังดาวน์โหลดข้อมูลความทรงจำ...</strong>
-              <p>ดาวน์โหลด 6 ไฟล์ พร้อมรับรองความถูกต้อง</p>
+              <strong>Downloading memory data...</strong>
+              <p>Downloading 6 files with integrity verification</p>
               <div className="progress-block">
                 <div className="progress-track">
                   <span style={{ width: `${progress}%` }} />
                 </div>
-                <small>{Math.round(progress)}% — กำลังประมวลผลและบีบอัดข้อมูล</small>
+                <small>{Math.round(progress)}% — processing and compressing data</small>
               </div>
             </div>
           </div>
@@ -520,42 +520,42 @@ export function MedicalDownload() {
             </div>
 
             <div className="complete-info">
-              <h2>ดาวน์โหลดสำเร็จ</h2>
-              <p>ดาวน์โหลด 6 ไฟล์ความทรงจำเรียบร้อยแล้ว</p>
+              <h2>Download Successful</h2>
+              <p>6 memory files downloaded successfully</p>
             </div>
 
             <div className="complete-details">
               <div className="detail-card">
-                <span>สถานะข้อมูล</span>
-                <strong>ปลอดภัย ✓</strong>
+                <span>Data Status</span>
+                <strong>Secure ✓</strong>
               </div>
               <div className="detail-card">
-                <span>การรับรอง</span>
-                <strong>รับรองแล้ว ✓</strong>
+                <span>Certification</span>
+                <strong>Certified ✓</strong>
               </div>
               <div className="detail-card">
-                <span>บันทึกการเข้าถึง</span>
-                <strong>บันทึกแล้ว ✓</strong>
+                <span>Access Log</span>
+                <strong>Recorded ✓</strong>
               </div>
               <div className="detail-card">
-                <span>ความถูกต้อง</span>
-                <strong>ตรวจสอบแล้ว ✓</strong>
+                <span>Accuracy</span>
+                <strong>Verified ✓</strong>
               </div>
             </div>
 
             <div className="complete-notice">
               <p>
-                📋 ไฟล์ทั้งหมดถูกบันทึกลง secure storage พร้อม chain of custody
-                ที่สามารถตรวจสอบย้อนกลับได้ สำหรับใช้เป็นหลักฐานทางการแพทย์หรือทางกฎหมาย
+                📋 All files have been saved to secure storage with chain of custody
+                that can be traced back. For use as medical or legal evidence.
               </p>
             </div>
 
             <div className="complete-actions">
               <button className="primary-button" onClick={() => setPhase("report")} type="button">
-                ดูรายงานสรุป
+                View Report Summary
               </button>
               <Link className="secondary-button link-button" href="/">
-                กลับหน้าหลัก
+                Back to Home
               </Link>
             </div>
           </div>
@@ -569,9 +569,9 @@ export function MedicalDownload() {
               <div className="panel-header">
                 <div>
                   <span className="eyebrow">Memory Files</span>
-                  <h2>รายการความทรงจำที่สแกนได้</h2>
+                  <h2>Scanned Memory Files</h2>
                 </div>
-                <span className="status-chip connected">6 ไฟล์</span>
+                <span className="status-chip connected">6 files</span>
               </div>
 
               <div className="report-file-list">
@@ -599,32 +599,32 @@ export function MedicalDownload() {
                     <rect x="4" y="15" width="32" height="10" rx="2" stroke="currentColor" strokeWidth="1.8" />
                   </svg>
                 </div>
-                <h3>การใช้งานทางการแพทย์</h3>
+                <h3>Medical Use</h3>
                 <p className="report-card-desc">
-                  ข้อมูลความทรงจำสามารถนำไปใช้ประกอบการรักษาทางจิตเวชได้ดังนี้
+                  Memory data can be used to support psychiatric treatment as follows:
                 </p>
 
                 <ul className="report-use-list">
                   <li>
                     <strong>Trauma Therapy (EMDR)</strong>
-                    <span>ใช้ภาพความทรงจำเพื่อ reprocess เหตุการณ์ที่กระทบจิตใจ ช่วยลดอาการ PTSD</span>
+                    <span>Use memory images to reprocess traumatic events, helping reduce PTSD symptoms</span>
                   </li>
                   <li>
                     <strong>Cognitive Rehabilitation</strong>
-                    <span>ฟื้นฟูความจำในผู้ป่วยที่มีปัญหาด้านความจำ เช่น Alzheimer&apos;s ระยะเริ่มต้น</span>
+                    <span>Restore memory in patients with memory issues, such as early-stage Alzheimer&apos;s</span>
                   </li>
                   <li>
                     <strong>Emotional Mapping</strong>
-                    <span>วิเคราะห์รูปแบบอารมณ์ที่เชื่อมโยงกับความทรงจำ เพื่อวางแผนการบำบัด</span>
+                    <span>Analyze emotional patterns linked to memories for treatment planning</span>
                   </li>
                   <li>
                     <strong>Baseline Assessment</strong>
-                    <span>ใช้เป็นข้อมูลอ้างอิงสถานะจิตใจ ณ เวลาที่สแกน สำหรับเปรียบเทียบในอนาคต</span>
+                    <span>Use as a reference for mental state at the time of scan for future comparison</span>
                   </li>
                 </ul>
 
                 <div className="report-card-footer">
-                  <span className="report-badge medical-badge">สำหรับแพทย์ผู้เชี่ยวชาญเท่านั้น</span>
+                  <span className="report-badge medical-badge">For qualified medical professionals only</span>
                 </div>
               </div>
             )}
@@ -643,32 +643,32 @@ export function MedicalDownload() {
                     <path d="M 20 8 L 20 32" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
                   </svg>
                 </div>
-                <h3>การใช้งานทางกฎหมาย / ยุติธรรม</h3>
+                <h3>Legal / Judicial Use</h3>
                 <p className="report-card-desc">
-                  ข้อมูลที่ผ่านการรับรองสามารถใช้เป็นหลักฐานในกระบวนการยุติธรรมได้
+                  Certified data can be used as evidence in the justice system.
                 </p>
 
                 <ul className="report-use-list">
                   <li>
-                    <strong>หลักฐานทางคดีอาญา</strong>
-                    <span>ภาพความทรงจำที่ได้รับการรับรองสามารถใช้ยืนยันเหตุการณ์ในชั้นศาลได้</span>
+                    <strong>Criminal Case Evidence</strong>
+                    <span>Certified memory images can be used to confirm events in court</span>
                   </li>
                   <li>
-                    <strong>การสืบสวนสอบสวน</strong>
-                    <span>ช่วยเจ้าหน้าที่ตำรวจในการรวบรวมข้อมูลจากพยานหรือผู้เสียหาย</span>
+                    <strong>Investigation & Inquiry</strong>
+                    <span>Assists law enforcement in gathering information from witnesses or victims</span>
                   </li>
                   <li>
-                    <strong>คดีแพ่ง / ครอบครัว</strong>
-                    <span>ใช้ประกอบการพิจารณาสิทธิ์ในคดีมรดก, Digital Legacy หรือข้อพิพาทครอบครัว</span>
+                    <strong>Civil / Family Cases</strong>
+                    <span>Used in consideration of rights in inheritance cases, Digital Legacy, or family disputes</span>
                   </li>
                   <li>
                     <strong>Chain of Custody</strong>
-                    <span>ข้อมูลทุกไฟล์มีการบันทึกที่ไม่สามารถแก้ไขย้อนหลังได้</span>
+                    <span>All file data has tamper-proof records that cannot be retroactively modified</span>
                   </li>
                 </ul>
 
                 <div className="report-card-footer">
-                  <span className="report-badge legal-badge">ต้องมีหมายศาลหรือความยินยอม</span>
+                  <span className="report-badge legal-badge">Court order or consent required</span>
                 </div>
               </div>
             )}
@@ -676,10 +676,10 @@ export function MedicalDownload() {
             {/* Actions */}
             <div className="report-actions">
               <button className="primary-button" onClick={() => setPhase("gallery")} type="button">
-                ดูภาพความทรงจำ
+                View Memory Gallery
               </button>
               <Link className="secondary-button link-button" href="/">
-                กลับหน้าหลัก
+                Back to Home
               </Link>
             </div>
           </div>
@@ -766,7 +766,7 @@ export function MedicalDownload() {
                         ))}
                       </div>
                       <div className="gallery-actions-row">
-                        <span className="gallery-action-btn">▶ เล่นซ้ำ</span>
+                        <span className="gallery-action-btn">▶ Replay</span>
                         <span className="gallery-action-btn">📋 Export</span>
                         <span className="gallery-action-btn">🔒 Verify</span>
                       </div>

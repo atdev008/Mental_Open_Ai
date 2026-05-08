@@ -17,10 +17,10 @@ const baseDeviceStatus: DeviceStatus = {
   comfortScore: 91,
   lastSyncAt: "2026-05-08T20:36:00.000Z",
   sensors: [
-    { label: "EEG", value: "สมดุล", delta: "+2%", status: "stable" },
+    { label: "EEG", value: "Balanced", delta: "+2%", status: "stable" },
     { label: "Stress", value: "36/100", delta: "-8", status: "stable" },
     { label: "HRV", value: "71 ms", delta: "+4", status: "stable" },
-    { label: "Sleep", value: "7.4 ชม.", delta: "+0.8", status: "stable" },
+    { label: "Sleep", value: "7.4 hrs", delta: "+0.8", status: "stable" },
     { label: "Focus", value: "84%", delta: "+5%", status: "stable" }
   ]
 };
@@ -28,53 +28,53 @@ const baseDeviceStatus: DeviceStatus = {
 const baseMemories: MemoryEvent[] = [
   {
     id: "birthday-2033",
-    title: "วันเกิดอายุ 5 ขวบ",
+    title: "5th Birthday",
     happenedAt: "2033-12-12T12:30:00.000Z",
     ageAtEvent: 5,
-    location: "กรุงเทพฯ",
-    emotion: "อบอุ่น",
+    location: "Bangkok",
+    emotion: "Warm",
     sensitivity: "low",
-    summary: "มื้อเย็นวันเกิดกับครอบครัว พร้อมเสียงหัวเราะและความตื่นเต้นก่อนเป่าเค้ก",
-    tags: ["ครอบครัว", "ฉลอง", "เด็ก"],
+    summary: "Birthday dinner with family, laughter and excitement before blowing out the candles",
+    tags: ["family", "celebration", "childhood"],
     mediaType: "photo",
     replayReadiness: 96
   },
   {
     id: "graduation-2026",
-    title: "ช่วงเวลาสำคัญรับปริญญา",
+    title: "Graduation Ceremony",
     happenedAt: "2026-06-21T02:15:00.000Z",
     ageAtEvent: 22,
-    location: "มหาวิทยาลัย",
-    emotion: "ภูมิใจ",
+    location: "University",
+    emotion: "Proud",
     sensitivity: "medium",
-    summary: "ภาพเวทีรับปริญญา เสียงเชียร์จากคนในบ้าน และความโล่งใจหลังซ้อมมาหลายเดือน",
-    tags: ["ความสำเร็จ", "การศึกษา", "ครอบครัว"],
+    summary: "The graduation stage, cheering from family, and relief after months of rehearsal",
+    tags: ["achievement", "education", "family"],
     mediaType: "scene",
     replayReadiness: 88
   },
   {
     id: "first-meeting-2024",
-    title: "วันแรกที่พบกัน",
+    title: "The Day We First Met",
     happenedAt: "2024-02-14T11:30:00.000Z",
     ageAtEvent: 20,
-    location: "ร้านกาแฟย่านเมืองเก่า",
-    emotion: "ตื่นเต้น",
+    location: "Coffee shop in the old town",
+    emotion: "Excited",
     sensitivity: "medium",
-    summary: "บทสนทนาแรก ความเขินเล็กน้อย และเพลงในร้านที่เชื่อมกับความทรงจำนี้โดยตรง",
-    tags: ["ความรัก", "ชีวิตส่วนตัว"],
+    summary: "First conversation, slight shyness, and the song playing in the shop directly linked to this memory",
+    tags: ["love", "personal life"],
     mediaType: "feeling",
     replayReadiness: 92
   },
   {
     id: "farewell-message-2049",
-    title: "ข้อความถึงคนที่รัก",
+    title: "Message to Loved Ones",
     happenedAt: "2049-11-03T16:45:00.000Z",
     ageAtEvent: 45,
-    location: "บ้าน",
-    emotion: "อ่อนโยน",
+    location: "Home",
+    emotion: "Gentle",
     sensitivity: "high",
-    summary: "บันทึกเสียงและเจตนาความทรงจำเพื่อส่งต่อให้ครอบครัวในโหมด Digital Legacy",
-    tags: ["legacy", "ครอบครัว", "เสียง"],
+    summary: "Voice recording and memory intent to pass on to family in Digital Legacy mode",
+    tags: ["legacy", "family", "voice"],
     mediaType: "voice",
     replayReadiness: 74
   }
@@ -85,28 +85,28 @@ const baseConsent: ConsentProfile = {
   multiFactorAuth: true,
   decentralizedStorage: true,
   digitalLegacyEnabled: true,
-  approvedAudiences: ["เฉพาะเจ้าของ", "ครอบครัว", "แพทย์ที่ได้รับอนุญาต"],
-  retentionPolicy: "เก็บแบบเข้ารหัสไม่มีกำหนดจนกว่าจะถอนความยินยอม",
-  emergencyAccess: "ต้องมีการยืนยันสองฝ่ายก่อนเปิดใช้"
+  approvedAudiences: ["Owner only", "Family", "Authorized physicians"],
+  retentionPolicy: "Stored encrypted indefinitely until consent is withdrawn",
+  emergencyAccess: "Requires dual-party verification before activation"
 };
 
 const baseInsights: InsightCard[] = [
   {
     id: "restore-routine",
-    title: "แนะนำการพักสมองระยะสั้น",
-    detail: "ความเครียดช่วงบ่ายสูงขึ้นเล็กน้อย ระบบแนะนำให้บันทึกเสียงสะท้อนความรู้สึก 90 วินาที",
+    title: "Short brain break recommended",
+    detail: "Afternoon stress slightly elevated. System recommends recording a 90-second emotional reflection.",
     priority: "care"
   },
   {
     id: "memory-cluster",
-    title: "พบคลัสเตอร์ความทรงจำครอบครัว",
-    detail: "AI จัดกลุ่มเหตุการณ์ที่มีความรู้สึกอบอุ่นและภาพรวมพร้อมทำเป็นไทม์ไลน์ย้อนดู",
+    title: "Family memory cluster detected",
+    detail: "AI grouped events with warm feelings and overview images, ready to create a retrospective timeline.",
     priority: "memory"
   },
   {
     id: "legal-ready",
-    title: "สิทธิ์การเข้าถึงสำหรับเหตุฉุกเฉินพร้อมใช้งาน",
-    detail: "ระบบนโยบายยังอยู่ในสถานะปลอดภัยและเป็นไปตาม consent ล่าสุดของเจ้าของข้อมูล",
+    title: "Emergency access rights ready",
+    detail: "Policy system is in a safe state and compliant with the data owner's latest consent.",
     priority: "assist"
   }
 ];

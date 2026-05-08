@@ -218,8 +218,8 @@ export function ScanMonitor({ initialDevice }: ScanMonitorProps) {
                 </div>
                 <small>
                   {phase === "complete"
-                    ? "สแกนเสร็จสมบูรณ์ ข้อมูลถูกบันทึกเรียบร้อยแล้ว"
-                    : "ระบบกำลังสะสมข้อมูลสำหรับสร้างผลลัพธ์จากสัญญาณสมอง"}
+                    ? "Scan complete. Data has been recorded successfully"
+                    : "System is accumulating data to generate results from brain signals"}
                 </small>
               </div>
             </article>
